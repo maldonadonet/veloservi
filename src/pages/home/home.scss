@@ -1,3 +1,51 @@
 page-home {
+    ion-slides {
+        background: #f2f2f2;
+        img {
+            width: 30% !important;
+        }
+    }
+}
 
+// Estilos personalizados
+#first-slide {
+    background-image: url('../assets/imgs/slide/slide5.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+#second-slide{
+    background-image: url('../assets/imgs/slide/paqueteria2.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+#tercer-slide{
+    background-image: url('../assets/imgs/slide/transporte1.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+#welcome-page{
+    background-image: url('../assets/imgs/slide/home.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-size: 100% 100%;
+}
+.bg-slide{
+    background-color: rgba($color: #F7EAE8, $alpha: 0.9);
+    width: 100% !important;
+    height: 100vh !important;
+    padding-top: 50%;
+    position: relative;
+}
+#logo{
+    width: 150% !important;
+}
+
+#omitir_intro{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
