@@ -1,3 +1,36 @@
-page-welcome {
+#container {
+    background-image: url('https://www.hrbmanagement.com/wp-content/uploads/pexels-photo-417005.jpeg');
+    width: 100%;
+    height: 100vh;
+    background-position: top;
+    position: relative;
+}
+
+#bg-welcome {
+    background-color: rgba(0, 143, 0, 0.9);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+#titulo {
+    height: 40%;
+    margin-top: 20%;
+    h1{
+        text-align: center;
+        padding-top: 30%;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 2.5em;
+        color: white;
+    }
+}
+
+#botonera {
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
 
 }
