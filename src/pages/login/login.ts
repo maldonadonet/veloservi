@@ -1,25 +1,52 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from "ionic-angular";
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiUsersProvider } from '../../providers/api-users/api-users';
+
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+    selector: "page-login",
+    templateUrl: "login.html"
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    usuario: string = '';
+    password: string = '';
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams, private _us: ApiUsersProvider, public loadingCtrl : LoadingController, public alertCtrl: AlertController) {}
 
+    ionViewDidLoad() {
+        console.log("ionViewDidLoad LoginPage");
+    }
+
+    cancelar(){
+      this.navCtrl.pop();
+    }
+
+    ingresar(){
+      
+      let loading = this.loadingCtrl.create({
+        content: 'Estableciendo conexión con el servidor..'
+      });
+
+      loading.present();
+
+      this._us.login(this.usuario, this.password)
+        .subscribe(()=>{
+          
+          if (this._us.usuario_activo()) {
+              this.navCtrl.push("ProductsPage");
+              loading.dismiss();
+          } else {
+              loading.dismiss();
+              this.limpiar();
+          }
+
+        })
+    }
+
+    limpiar(){
+      this.password = "";
+    }
 }

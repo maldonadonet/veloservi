@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {
+    IonicPage,
+    NavController,
+    NavParams,
+    LoadingController,
+    AlertController
+} from "ionic-angular";
+import { ApiUsersProvider } from '../../providers/api-users/api-users';
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +16,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  nombre:string;
+  email:string;
+  password:string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public _us: ApiUsersProvider, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+
+  registrar(){
+
+     let loading = this.loadingCtrl.create({
+         content: "Estableciendo conexión con el servidor.."
+     });
+
+     loading.present();
+
+     this._us.register(this.nombre, this.email,this.password).subscribe((data) => {
+         console.log(data);
+         loading.dismiss();
+         this.navCtrl.pop();
+     });
+
+  }
+
+  cancelar(){
+
   }
 
 }

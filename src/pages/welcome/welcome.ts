@@ -12,7 +12,17 @@ export class WelcomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
+	console.log('ionViewDidLoad WelcomePage');
   }
+
+  ingresar(){
+		this.navCtrl.push("LoginPage");
+  }
+
+  registrar(){
+    this.navCtrl.push("RegisterPage");
+  }
+
+
 
 }

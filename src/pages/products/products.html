@@ -1,15 +1,36 @@
-<!--
-  Generated template for the ProductsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>ProductsPage</ion-title>
-  </ion-navbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 >
+        Menú
+      </ion-col>
+      <ion-col col-8>
+        <label>Bienvenidos al Sistema</label>
+      </ion-col>
+      <ion-col col-2 >
+        <a (click)="salir()">
+           <ion-icon ios="ios-exit" md="md-exit"></ion-icon> 
+          Salir
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  
+
 </ion-header>
 
 <ion-content padding>
-
+    <!-- <span>Bienvenido: {{ usuario.nombre }}</span> -->
+    
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngFor="let item of productos.data">
+                <img src="assets/imgs/productos/coca.jpg">
+                <p text-center>Producto: {{ item.nombre }}</p>
+                <p text-center>Categoría: {{ item.categoria }}</p>
+                <p text-center>Precio: $ {{ item.precio }}.00</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
