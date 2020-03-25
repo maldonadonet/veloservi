@@ -5,7 +5,7 @@
       <ion-col col-2 >
         Menú
       </ion-col>
-      <ion-col col-8>
+      <ion-col col-8 text-center>
         <label>Bienvenidos al Sistema</label>
       </ion-col>
       <ion-col col-2 >
@@ -20,17 +20,69 @@
 
 </ion-header>
 
-<ion-content padding>
-    <!-- <span>Bienvenido: {{ usuario.nombre }}</span> -->
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <ion-slides pager>
+
+                    <ion-slide class="slide">
+                        <a ion-button round class="action">Agregar Promo</a>
+                        <img src="assets/imgs/slides-product_page/promo1.jpg" alt="">
+                    </ion-slide>
+
+                    <ion-slide class="slide">
+                        <a ion-button round class="action">Agregar Promo</a>
+                        <img src="assets/imgs/slides-product_page/promo2.jpg" alt="">
+                    </ion-slide>
+
+                    <ion-slide class="slide">
+                        <a ion-button round class="action">Agregar Promo</a>
+                        <img src="assets/imgs/slides-product_page/promo3.jpg" alt="">
+                    </ion-slide>
+                        
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+        <br>
+        
+        <ion-row>
+            <ion-col col-12  text-center>
+                <strong>Filtrar por:</strong>
+            </ion-col>
+            <ion-col col-4>
+                <button ion-button round small>Sucursal</button>
+            </ion-col>
+            <ion-col col-4>
+                <button ion-button round small (click)="filtrar_categoria();">Categoría</button>
+            </ion-col>
+            <ion-col col-4>
+                <button ion-button round small>Promoción</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    
     
     <ion-grid>
         <ion-row>
             <ion-col col-6 *ngFor="let item of productos.data">
-                <img src="assets/imgs/productos/coca.jpg">
-                <p text-center>Producto: {{ item.nombre }}</p>
-                <p text-center>Categoría: {{ item.categoria }}</p>
-                <p text-center>Precio: $ {{ item.precio }}.00</p>
+                <ion-card>
+                    <ion-card-header>
+                        <img src="assets/imgs/products/{{ item.foto }}">
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p text-center> {{ item.nombre }}</p>
+                        <p text-center>Precio: $ {{ item.precio }}.00</p>
+                        <span>Categoría: {{ item.categoria }}</span>
+                        <span>{{ item.id }}</span>
+                    </ion-card-content>
+                </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="cargando productos.."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
