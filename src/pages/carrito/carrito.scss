@@ -1,3 +1,15 @@
 page-carrito {
 
 }
+
+#row-header {
+    border-bottom: 1px solid #222222;
+    border-top: 1px solid #222222;
+    ion-col{
+        text-align: center;
+    }
+}
+
+#row-result {
+    border-bottom: 1px solid #CFD8DC;
+}

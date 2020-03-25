@@ -75,24 +75,13 @@ export class ApiProductsProvider {
 		return promesa;
 	}
 
-	getProducts() {
-		//this._us.cargar_storage();
+	getProducts(){
 		this.token = this._us.token;
 		let usuario = JSON.parse(this._us.User);
 
 		let url = `${URL_SERVICIOS}/listado_productos/${usuario.id}/${this._us.token}`;
 
-		this.http.get(url).subscribe(data => {
-			let data_resp = data;
-			//console.log(data);
-
-			if (data_resp["error"]) {
-				console.log("Encontro un error");
-			} else {
-				this.productos = data_resp["data"];
-				//console.log(this.productos);
-			}
-		});
+		return this.http.get(url);
 	}
 
 	nextPage(page) {
@@ -102,16 +91,7 @@ export class ApiProductsProvider {
 
 		let url = `${URL_SERVICIOS}/listado_productos/${usuario.id}/${this._us.token}?page=${page}`;
 
-		this.http.get(url).subscribe(data => {
-			let data_resp = data;
-			//console.log(data);
-
-			if (data_resp["error"]) {
-				console.log("Encontro un error");
-			} else {
-				this.productos = data_resp["data"];
-			}
-		});
+		return this.http.get(url);
 	}
 
 	filtrarCategoria(categoria:string) {
@@ -119,19 +99,9 @@ export class ApiProductsProvider {
 		this.token = this._us.token;
 		let usuario = JSON.parse(this._us.User);
 
-		let url = `${URL_SERVICIOS}/listado_productos/${usuario.id}/${this._us.token}/${categoria}`;
+		let url = `${URL_SERVICIOS}/filtrar_cat/${usuario.id}/${this._us.token}/${categoria}`;
 
-		this.http.get(url).subscribe(data => {
-			let data_resp = data;
-			//console.log(data);
-
-			if (data_resp["error"]) {
-				console.log("Encontro un error");
-			} else {
-				this.productos = data_resp["data"];
-				console.log(this.productos);
-			}
-		});
+		return this.http.get(url);
     }
 
 	actualizar_productos(){

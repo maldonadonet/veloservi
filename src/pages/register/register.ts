@@ -11,40 +11,43 @@ import { ApiUsersProvider } from '../../providers/api-users/api-users';
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+	selector: "page-register",
+	templateUrl: "register.html"
 })
 export class RegisterPage {
+	nombre: string;
+	email: string;
+	password: string;
 
-  nombre:string;
-  email:string;
-  password:string;
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public loadingCtrl: LoadingController,
+		public _us: ApiUsersProvider,
+		public alertCtrl: AlertController
+	) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public _us: ApiUsersProvider, public alertCtrl: AlertController) {
-  }
+	ionViewDidLoad() {
+		console.log("ionViewDidLoad RegisterPage");
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
+	registrar() {
+		let loading = this.loadingCtrl.create({
+			content: "Estableciendo conexión con el servidor.."
+		});
 
-  registrar(){
+		loading.present();
 
-     let loading = this.loadingCtrl.create({
-         content: "Estableciendo conexión con el servidor.."
-     });
+		this._us
+			.register(this.nombre, this.email, this.password)
+			.subscribe(data => {
+				console.log(data);
+				loading.dismiss();
+				this.navCtrl.pop();
+			});
+	}
 
-     loading.present();
-
-     this._us.register(this.nombre, this.email,this.password).subscribe((data) => {
-         console.log(data);
-         loading.dismiss();
-         this.navCtrl.pop();
-     });
-
-  }
-
-  cancelar(){
-
-  }
-
+	cancelar() {
+		this.navCtrl.pop();
+	}
 }

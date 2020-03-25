@@ -3,10 +3,11 @@
   <ion-grid>
     <ion-row>
       <ion-col col-2 >
-        Menú
+        <ion-icon ios="ios-menu" md="md-menu" style="font-size: 2.5em;"></ion-icon>
       </ion-col>
       <ion-col col-8 text-center>
-        <label>Bienvenidos al Sistema</label>
+        <ion-icon ios="ios-cart" md="md-cart" style="font-size:2em;" (click)="irCarrito()"></ion-icon>
+        <ion-badge item-end style="position: absolute;">{{ carrito.length }}</ion-badge>
       </ion-col>
       <ion-col col-2 >
         <a (click)="salir()">
@@ -66,16 +67,19 @@
     
     <ion-grid>
         <ion-row>
-            <ion-col col-6 *ngFor="let item of productos.data">
+            <ion-col col-6 *ngFor="let item of productos">
                 <ion-card>
                     <ion-card-header>
                         <img src="assets/imgs/products/{{ item.foto }}">
                     </ion-card-header>
                     <ion-card-content>
-                        <p text-center> {{ item.nombre }}</p>
-                        <p text-center>Precio: $ {{ item.precio }}.00</p>
-                        <span>Categoría: {{ item.categoria }}</span>
-                        <span>{{ item.id }}</span>
+                        <strong><p text-center> {{ item.nombre }}</p></strong>
+                        <p text-center>Precio: $ <span style="color:#c70039">{{ item.precio }}.00</span></p>
+                        <span>Categoría: {{ item.categoria }}</span><br>
+                        <hr>
+                        <div text-center>
+                            <button ion-button small (click)="addCarrito(item);"> <ion-icon ios="ios-cart" md="md-cart"></ion-icon></button>
+                        </div>
                     </ion-card-content>
                 </ion-card>
             </ion-col>

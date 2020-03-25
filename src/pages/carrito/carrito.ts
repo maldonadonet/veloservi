@@ -1,25 +1,32 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the CarritoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
-  selector: 'page-carrito',
-  templateUrl: 'carrito.html',
+	selector: "page-carrito",
+	templateUrl: "carrito.html"
 })
 export class CarritoPage {
+  data: any[] = [];
+  total: any = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+		this.data = navParams.get("data");
+	}
+
+	ionViewDidLoad() {
+    console.log("Data cargada: ", this.data);
+    if(this.data){
+      this.data.forEach(element => {
+        console.log(element);
+        this.total = this.total + element.producto.precio * element.cantidad;
+      });
+    }
+    console.log('total:', this.total);
+	}
+
+	back(){
+    this.navCtrl.pop();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CarritoPage');
-  }
-
 }
