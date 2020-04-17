@@ -1,10 +1,7 @@
 import { Component } from "@angular/core";
-import {
-	IonicPage,
-	NavController,
-	NavParams,
-	AlertController,
-} from "ionic-angular";
+import { IonicPage, NavController, NavParams, AlertController } from "ionic-angular";
+import { PedidosProvider } from '../../providers/pedidos/pedidos';
+
 
 @IonicPage()
 @Component({
@@ -20,7 +17,8 @@ export class CarritoPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		private alertCtrl: AlertController
+		private alertCtrl: AlertController,
+		private _ps: PedidosProvider
 	) {
 		this.data = navParams.get("data");
 	}
@@ -83,15 +81,17 @@ export class CarritoPage {
 
 	// ELiminar item del carrito
 	eliminaritem(id) {
-		console.log("item", id);
+		this._ps.crear_pedido(this.data, this.total).subscribe(()=>{
 
-		this.data.filter((item) => {
-			this.data.splice(id, 1);
 		});
 
-		if (this.data.length <= 0) {
-			this.total = 0;
-		}
+		// this.data.filter((item) => {
+		// 	this.data.splice(id, 1);
+		// });
+		//
+		// if (this.data.length <= 0) {
+		// 	this.total = 0;
+		// }
 	}
 
 	vaciarCarrito() {
@@ -121,9 +121,10 @@ export class CarritoPage {
 	}
 
 	enviarPedido() {
-
-        
-
-
-    }
+		this._ps.crear_pedido( this.data, this.total).subscribe(()=>{
+			this.data = [];
+			this.total = 0;
+			this.navCtrl.push('ProductsPage');
+		});
+	}
 }

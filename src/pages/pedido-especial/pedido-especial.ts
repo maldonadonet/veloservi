@@ -16,14 +16,15 @@ export class PedidoEspecialPage {
 	nombre_sucursal: string = "";
 	dir_sucursal: string = "";
 	productos: string = "";
+	dir_entrega: string = "";
 	pushPage: any;
 	habilitado: boolean = false;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-    private toastCtrl: ToastController,
-    private _ps: PedidosProvider
+    	private toastCtrl: ToastController,
+    	private _ps: PedidosProvider
 	) {
 		this.pushPage = "ProductsPage";
 	}
@@ -31,10 +32,13 @@ export class PedidoEspecialPage {
 	ionViewDidLoad() {}
 
 	pedido_esp() {
-		if (this.nombre_sucursal.length != 0 && this.dir_sucursal.length != 0 && this.productos.length != 0) {
-			this._ps.pedido_esp(this.nombre_sucursal, this.dir_sucursal, this.productos).subscribe(data=>{
-        console.log(data);
-      })
+		if (this.nombre_sucursal.length != 0 && this.dir_sucursal.length != 0 && this.productos.length != 0 && this.dir_entrega.length != 0) {
+
+			this._ps.pedido_esp(this.nombre_sucursal, this.dir_sucursal, this.productos, this.dir_entrega)
+				.subscribe(()=>{
+        			this.navCtrl.push('ProductsPage');
+      			});
+
 		} else {
 			const toast = this.toastCtrl.create({
 				message: "Debes rellenar todos los campos",
@@ -45,7 +49,4 @@ export class PedidoEspecialPage {
 		}
 	}
 
-	ayuda() {
-		console.log("Evento funcionando");
-	}
 }
