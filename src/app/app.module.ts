@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ApiUsersProvider } from '../providers/api-users/api-users';
 import { IonicStorageModule } from "@ionic/storage";
 import { ApiProductsProvider } from '../providers/api-products/api-products';
+import { PedidosProvider } from '../providers/pedidos/pedidos';
 
 @NgModule({
     declarations: [MyApp],
@@ -25,7 +26,8 @@ import { ApiProductsProvider } from '../providers/api-products/api-products';
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         ApiUsersProvider,
-    ApiProductsProvider
+    ApiProductsProvider,
+    PedidosProvider
     ]
 })
 export class AppModule {}

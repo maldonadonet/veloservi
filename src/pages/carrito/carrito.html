@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Carrito </ion-title>
+  <ion-navbar color="primary">
+    <ion-title text-center>Carrito </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,63 +11,98 @@
 
     <ion-grid *ngIf="data">
         <ion-row id="row-header">
-            <ion-col col-1>
-                <strong>Id</strong>
-            </ion-col>
             <ion-col col-3>
                 <strong>Producto</strong>
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-2>
                 <strong>Precio</strong>
             </ion-col>
             <ion-col col-2>
                 <strong>Cantidad</strong>
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-2>
                 <strong>Total</strong>
             </ion-col>
-        </ion-row>
-        <ion-row *ngFor="let item of data" id="row-result">
-            <ion-col col-1>
-                <span>{{ item.producto.id }}</span>
+            <ion-col col-3>
+                <strong>Acciones</strong>
             </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let item of data; let i = index" id="row-result">
             <ion-col col-3 text-center>
                 <span>{{ item.producto.nombre }}</span>
             </ion-col>
-            <ion-col col-3 text-center>
+            <ion-col col-2 text-center>
                 <span>$ {{ item.producto.precio }}</span>
             </ion-col>
             <ion-col col-2 text-center>
                 <span>{{ item.cantidad }}</span>
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-2 text-right>
                 <span>$ {{ (item.producto.precio * item.cantidad).toFixed(2) }}</span>
+            </ion-col>
+            <ion-col col-3 text-right>
+                <ion-buttons>
+                    <button ion-button small color="primary" (click)="modificarCantidad(item.producto.id)">
+                        <ion-icon ios="ios-create" md="md-create"></ion-icon>
+                    </button>
+                    <button ion-button small color="danger" (click)="eliminaritem(i)">
+                         <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+                    </button>
+                </ion-buttons>
             </ion-col>
         </ion-row>
         <ion-row id="row-result">
-            <ion-col col-1>
-                
+            <ion-col col-4>
+                <button ion-button small (click)="actualizarTotal()">Actualizar total</button>
             </ion-col>
             <ion-col col-3>
                 
             </ion-col>
-            <ion-col col-2>
-                
-            </ion-col>
-            <ion-col col-3 text-center>
+            <ion-col col-2 text-center>
                 <strong>Total</strong>
             </ion-col>
-            <ion-col col-3>
-                <span>$ {{ (total).toFixed(2) }}</span>
+            <ion-col col-3 text-right>
+                <span style="color:#c70039;">$ {{ (total).toFixed(2) }}</span>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <div *ngIf="data == null" text-center>
-        <img src="assets/imgs/online-shopping.svg" width="50%">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4>
+                <ion-input type="text" placeholder="Introducir código" mode="ios" id="input-cupon" [(ngModel)]="cupon"></ion-input>
+            </ion-col>
+            <ion-col col-8>
+                <button ion-button small color="primary" (click)="aplicarCupon()" [disabled]="habilitado==false">Aplicar</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div *ngIf="data.length <= 0" text-center style="margin-top: 20px !important;">
+        <img src="assets/imgs/online-shopping.svg" width="30%">
         <h3>Carrito vacio</h3>
         <p>favor de ir a la zona de productos y añadir productos al carrito para hacer tu Pedido.</p>
     </div>
 
+    <div *ngIf="data.length > 0">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button round full color="danger" (click)="vaciarCarrito()">Vaciar carrito</button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button round full color="primary" (click)="enviarPedido();">Enviar pedido</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-title text-center>VeloServi 1.0.0</ion-title>
+    </ion-toolbar>
+</ion-footer>
+
+

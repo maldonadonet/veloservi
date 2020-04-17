@@ -1,1 +1,40 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-content>
+  	
+  	<ion-grid>
+  		<ion-row>
+  			<ion-col col-12>
+  				<img src="assets/imgs/logo_marca.png">
+  			</ion-col>
+  			<ion-col col-12>
+  				<h3 text-center>Menú principal</h3>
+  			</ion-col>
+  		</ion-row>
+  	</ion-grid>
+
+    <ion-list>
+      <button ion-item (click)="openPage('ProductsPage')">
+      	<img src="assets/imgs/productos.svg" width="10%">
+        Productos
+      </button>
+      <button ion-item (click)="openPage('PedidosPage')">
+        <img src="assets/imgs/pedidos.svg" width="10%">
+        Pedidos
+      </button>
+      <button ion-item (click)="openPage('NosotrosPage')">
+      	<img src="assets/imgs/cart.svg" width="10%">
+        Nosotros
+      </button>
+      <button ion-item (click)="openPage('ContactoPage')">
+      	<img src="assets/imgs/contact.svg" width="10%">
+        Contacto
+      </button>
+      <button ion-item (click)="salir()">
+      	<img src="assets/imgs/exit.svg" width="10%">
+        Salir
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

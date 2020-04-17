@@ -90,8 +90,7 @@ export class ApiUsersProvider {
 
     cerrar_sesion() {
         this.token = null;
-        this.User = null;
-        //this.guardar_storage();
+        this.guardar_storage();
     }
 
     private guardar_storage() {

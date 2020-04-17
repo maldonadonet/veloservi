@@ -14,6 +14,7 @@ export class ApiProductsProvider {
 	otrosProductos: any[] = [];
 	id_usuario: any;
 	token: any;
+	asociados: any[] = [];
 
 	constructor(
 		public http: HttpClient,
@@ -43,18 +44,20 @@ export class ApiProductsProvider {
 		let promesa = new Promise((resolve, reject) => {
 			if (this.platform.is("cordova")) {
 				this.storage.ready().then(() => {
-					this.storage.get("productos").then(productos => {
+					this.storage.get("productos").then((productos) => {
 						if (productos) {
 							this.productos = productos;
 						}
 					});
 
-					this.storage.get("otrosProductos").then(otrosProductos => {
-						if (otrosProductos) {
-							this.otrosProductos = otrosProductos;
-						}
-						resolve();
-					});
+					this.storage
+						.get("otrosProductos")
+						.then((otrosProductos) => {
+							if (otrosProductos) {
+								this.otrosProductos = otrosProductos;
+							}
+							resolve();
+						});
 				});
 			} else {
 				if (localStorage.getItem("productos")) {
@@ -75,7 +78,7 @@ export class ApiProductsProvider {
 		return promesa;
 	}
 
-	getProducts(){
+	getProducts() {
 		this.token = this._us.token;
 		let usuario = JSON.parse(this._us.User);
 
@@ -94,20 +97,53 @@ export class ApiProductsProvider {
 		return this.http.get(url);
 	}
 
-	filtrarCategoria(categoria:string) {
-        this._us.cargar_storage();
+	filtrarCategoria(categoria: string) {
+		this._us.cargar_storage();
 		this.token = this._us.token;
 		let usuario = JSON.parse(this._us.User);
 
 		let url = `${URL_SERVICIOS}/filtrar_cat/${usuario.id}/${this._us.token}/${categoria}`;
 
 		return this.http.get(url);
-    }
+	}
 
-	actualizar_productos(){
-        this.productos = null;
-        this.guardar_storage();
-        this.productos = this.otrosProductos;
-        this.guardar_storage();
-    }
+	actualizar_productos() {
+		this.productos = null;
+		this.guardar_storage();
+		this.productos = this.otrosProductos;
+		this.guardar_storage();
+	}
+
+	filtrarAsociado(asociado: number) {
+		this._us.cargar_storage();
+		this.token = this._us.token;
+		let usuario = JSON.parse(this._us.User);
+
+		let url = `${URL_SERVICIOS}/filtrar_suc/${usuario.id}/${this._us.token}/${asociado}`;
+
+		return this.http.get(url);
+	}
+
+	obtenerAsociados() {
+		this._us.cargar_storage();
+		this.token = this._us.token;
+		let usuario = JSON.parse(this._us.User);
+
+		let url = `${URL_SERVICIOS}/obtener_asociados/${usuario.id}/${this._us.token}`;
+
+		return this.http.get(url).map((resp: any) => {
+			//console.log(resp);
+			this.asociados = resp.data.data;
+		});
+	}
+
+	filtrarPromocion() {
+		this._us.cargar_storage();
+		this.token = this._us.token;
+		let usuario = JSON.parse(this._us.User);
+
+		let url = `${URL_SERVICIOS}/obtener_promociones/${usuario.id}/${this._us.token}`;
+
+		return this.http.get(url);
+	}
 }

@@ -1,19 +1,16 @@
 
-<ion-header>
+<ion-header color="primary">
   <ion-grid>
-    <ion-row>
-      <ion-col col-2 >
-        <ion-icon ios="ios-menu" md="md-menu" style="font-size: 2.5em;"></ion-icon>
+    <ion-row style="background-color: green; padding-left: 4px !important;">
+      <ion-col col-1>
+        <ion-icon ios="ios-menu" md="md-menu" style="font-size: 2.5em; color:whitesmoke;" (click)="openModal()"></ion-icon>
       </ion-col>
-      <ion-col col-8 text-center>
-        <ion-icon ios="ios-cart" md="md-cart" style="font-size:2em;" (click)="irCarrito()"></ion-icon>
-        <ion-badge item-end style="position: absolute;">{{ carrito.length }}</ion-badge>
+      <ion-col col-9 id="col-title">
+        <span id="title" style="color: white;">VeloServi Shop</span>
       </ion-col>
-      <ion-col col-2 >
-        <a (click)="salir()">
-           <ion-icon ios="ios-exit" md="md-exit"></ion-icon> 
-          Salir
-        </a>
+      <ion-col col-1 text-right id="col-cart">
+        <ion-icon ios="ios-cart" md="md-cart" style="font-size:2em; margin-top: 10px; color: white;" (click)="irCarrito()"></ion-icon>
+        <ion-badge item-end style="position: absolute; top: 8px; right: -13px;">{{ carrito.length }}</ion-badge>
       </ion-col>
     </ion-row>
   </ion-grid>  
@@ -47,19 +44,28 @@
             </ion-col>
         </ion-row>
         <br>
+
+        <ion-row>
+            <ion-col col-12>
+                <p text-center id="label-pedido-esp">¿Ya tienes tu tienda favorita?</p>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button round (click)="navigatePedidoEsp()">Realizar pedido Especial</button>
+            </ion-col>
+        </ion-row>
         
         <ion-row>
             <ion-col col-12  text-center>
                 <strong>Filtrar por:</strong>
             </ion-col>
             <ion-col col-4>
-                <button ion-button round small>Sucursal</button>
+                <button ion-button round small (click)="filtrar_asociado()">Sucursal</button>
             </ion-col>
             <ion-col col-4>
                 <button ion-button round small (click)="filtrar_categoria();">Categoría</button>
             </ion-col>
             <ion-col col-4>
-                <button ion-button round small>Promoción</button>
+                <button ion-button round small (click)="filtrar_promociones();">Promoción</button>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -69,13 +75,13 @@
         <ion-row>
             <ion-col col-6 *ngFor="let item of productos">
                 <ion-card>
-                    <ion-card-header>
-                        <img src="assets/imgs/products/{{ item.foto }}">
-                    </ion-card-header>
                     <ion-card-content>
+                        <img src="assets/imgs/products/{{ item.foto }}">
+                        <p id="label-promo" *ngIf="promocion">% Descuento</p>
                         <strong><p text-center> {{ item.nombre }}</p></strong>
                         <p text-center>Precio: $ <span style="color:#c70039">{{ item.precio }}.00</span></p>
                         <span>Categoría: {{ item.categoria }}</span><br>
+                        <span>Product_id: {{ item.id }}</span><br>
                         <hr>
                         <div text-center>
                             <button ion-button small (click)="addCarrito(item);"> <ion-icon ios="ios-cart" md="md-cart"></ion-icon></button>

@@ -1,5 +1,10 @@
 page-carrito {
-
+    span {
+        font-size: .9em !important;
+    }
+    strong {
+        font-size: .9em !important;
+    }
 }
 
 #row-header {
@@ -12,4 +17,14 @@ page-carrito {
 
 #row-result {
     border-bottom: 1px solid #CFD8DC;
+}
+
+#input-cupon {
+    background-color: #c8c7c7;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+#input-cupon::placeholder {
+    color:#000 !important;
 }

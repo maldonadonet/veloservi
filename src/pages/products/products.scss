@@ -1,22 +1,19 @@
 page-products {
-    ion-content {
-        
-    }
     ion-grid {
         margin: 0 !important;
         padding: 0 !important;
     }
     ion-slides{
         width: 100%;
-        height: 200px;
+        height: 180px;
         margin: 0;
         padding: 0;
         ion-slide {
-            background-color: green !important;
+            background-color: white !important;
             width: 100% !important;
             img{
                 width: 100% !important;
-                height: 100% !important;
+                
             }
         }
     }
@@ -36,4 +33,45 @@ page-products {
     left: 30%;
     color: white;
     z-index: 1000 !important;
+}
+
+#label-promo {
+    color: #fff;
+    text-align: center;
+    background-color: #c70039;
+    border-radius: 20px;
+}
+
+#label-pedido-esp {
+    color: #c70039;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#col-title, .col-cart {
+    text-align: center;
+    padding-top: 15px !important;
+}
+
+#title{
+    margin-left: 50px !important;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 10px !important;
+}
+
+.col {
+    padding: 0 !important;
+    margin: 0 !important;
+    ion-card {
+        margin: 10px 0px 0px 10px !important;
+        padding: 0px !important;
+        ion-card-content {
+            padding: 2px;
+            img {
+                width: 100% !important;
+            }
+        }
+    }
 }

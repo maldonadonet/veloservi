@@ -1,0 +1,27 @@
+page-pedido-especial {
+
+    ion-header{
+        width: 100%;
+        height: 180px;
+        background-color: #047f0c;
+        border-radius: 0px 0px 30px 30px;
+        box-shadow: 1px 0px 4px #222222;
+        margin-bottom: 20px;
+        h1 {
+            color:#fff;
+            text-align: center;
+            margin-top: 50px;
+        }
+    }
+    ion-content {
+        background-image: url('../../assets/imgs/bg1.jpg');
+        ion-card {
+            border-radius: 10px !important;
+            ion-textarea, ion-input {
+                border: .5px solid #E0E0E0 !important;
+                border-radius: 10px;
+                padding: 2px !important;
+            }
+        }
+    }
+}
