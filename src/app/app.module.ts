@@ -11,23 +11,27 @@ import { IonicStorageModule } from "@ionic/storage";
 import { ApiProductsProvider } from '../providers/api-products/api-products';
 import { PedidosProvider } from '../providers/pedidos/pedidos';
 
+// List Plugins
+import { Network } from "@ionic-native/network";
+
 @NgModule({
-    declarations: [MyApp],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(MyApp),
-        HttpClientModule,
-        IonicStorageModule.forRoot()
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [MyApp],
-    providers: [
-        StatusBar,
-        SplashScreen,
-        { provide: ErrorHandler, useClass: IonicErrorHandler },
-        ApiUsersProvider,
-    ApiProductsProvider,
-    PedidosProvider
-    ]
+	declarations: [MyApp],
+	imports: [
+		BrowserModule,
+		IonicModule.forRoot(MyApp),
+		HttpClientModule,
+		IonicStorageModule.forRoot(),
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [MyApp],
+	providers: [
+		StatusBar,
+		SplashScreen,
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+		ApiUsersProvider,
+		ApiProductsProvider,
+		PedidosProvider,
+		Network
+	],
 })
 export class AppModule {}
