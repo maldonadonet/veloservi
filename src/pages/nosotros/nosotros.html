@@ -1,12 +1,68 @@
 <ion-header>
-    <ion-buttons>
-        <button ion-button start outline>
-             <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-        </button>
-    </ion-buttons>
-	<ion-navbar>
-		<ion-title>NosotrosPage</ion-title>
-	</ion-navbar>
+  <ion-toolbar>
+		<ion-buttons>
+			<button ion-button icon-only start (click)="abrirmenu()">
+				<ion-icon name="menu"></ion-icon>
+			</button>
+		</ion-buttons>
+        <ion-title text-center>Nosotros</ion-title>
+        <ion-buttons end>
+			<button ion-button icon-only start (click)="abrirmenu()">
+				<ion-icon name="exit"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content padding>
+
+	<ion-card>
+		<ion-card-header>
+            <ion-slides pager>
+
+                <ion-slide>
+                    <img src="https://thenextscoop.com/wp-content/uploads/2018/11/Leverage-Trending-Products-to-Grow-your-Ecommerce-Business-1280x720.jpg" alt="">
+                </ion-slide>
+
+                <ion-slide>
+                    <img src="https://noticiasbancarias.com/wp-content/uploads/2019/11/Paqueteria.jpg" alt="">
+                </ion-slide>
+
+                <ion-slide>
+                    <img src="https://wrmx00.epimg.net/radio/imagenes/2019/11/12/hora_25/1573595975_635316_1573596215_miniatura_normal.jpg" alt="">
+                </ion-slide>
+
+            </ion-slides>
+        </ion-card-header>
+		<ion-card-content>
+			<ion-card-title>
+				VELOSERVI
+			</ion-card-title>
+			<p text-justify>
+				Somos una empresa 100% Colombiana enfocados ofrecer el mejor servicio y con la mejor calidad a nuestras iniciales 4 cuidades y expandiendonos día a día.
+            </p>
+            <br>
+
+            <h1 text-center>Nuestros Servicios</h1>
+
+            <ion-list inset>
+                <ion-item-group>
+                    <ion-item>
+                        <h2 text-center>Ecommerce Productos</h2>
+                        <img src="https://www.womgp.com/blog/wp-content/uploads/2015/03/e-commerce-platforms-660x330.png" alt="">
+                    </ion-item>
+                    <ion-item>
+                        <h2 text-center>Envío de paquetería</h2>
+                        <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10bgoR.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f" alt="">
+                    </ion-item>
+                    <ion-item>
+                        <h2 text-center>Transportes privados</h2>
+                        <img src="https://www.nitu.mx/wp-content/uploads/2017/07/arrendadora-de-autos.jpg" alt="">
+                    </ion-item>
+                </ion-item-group>
+            </ion-list>
+           
+		</ion-card-content>
+    </ion-card>
+    
+</ion-content>
