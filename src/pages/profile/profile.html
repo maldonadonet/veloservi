@@ -1,15 +1,93 @@
-
 <ion-header>
-  <ion-navbar>
-    <ion-buttons>
-      <button ion-button icon-only start (click)="abrirmenu()">
+	<ion-navbar color="primary">
+		<ion-buttons>
+			<button ion-button icon-only start (click)="abrirmenu()">
 				<ion-icon name="menu"></ion-icon>
 			</button>
-    </ion-buttons>
-    <ion-title>Mi cuenta</ion-title>
-  </ion-navbar>
+		</ion-buttons>
+		<ion-title>Mi cuenta</ion-title>
+	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+    <ion-card>
+        <div text-center style="margin-top: 30px;">
+            <img src="assets/imgs/user-profile.jpg" id="img-profile"/>
+        </div>
+        <ion-card-content>
+            <ion-card-title>
+                <ion-list>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            Nombre:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.nombre }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            Dirección:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.direccion }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            Cuidad:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.cuidad }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            Email:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.email }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            Teléfono:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.telefono }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-4>
+                            DNI:
+                        </ion-col>
+                        <ion-col col-8 text-rigth>
+                            <p>{{ user.dni }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row ion-item>
+                        <ion-col col-6>
+                            <button ion-button round full>Actualizar perfil</button>    
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </ion-card-title>
+            <p>
+                
+            </p>
+        </ion-card-content>
+    </ion-card>
+
+
+
+
+
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-title text-center>VeloServi App 1.0.0</ion-title>
+    </ion-toolbar>
+</ion-footer>

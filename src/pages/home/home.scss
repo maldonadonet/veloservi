@@ -9,7 +9,7 @@ page-home {
 
 // Estilos personalizados
 #first-slide {
-    background-image: url('../assets/imgs/slide/slide1.jpeg');
+    background-image: url('https://dianasoluciones.com/wp-content/uploads/2019/11/Tienda-Perfecta-800x500-min.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -21,24 +21,29 @@ page-home {
     background-size: cover;
 }
 #tercer-slide{
-    background-image: url('../assets/imgs/slide/home3.jpeg');
+    background-image: url('../assets/imgs/slide/bg-autos.jpg');
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
 }
 #welcome-page{
-    background-image: url('../assets/imgs/slide/home.jpg');
+    background-image: url('https://hipotecaycompra.mx/wp-content/uploads/2019/09/sesion-fotos-familia-casa-9.jpg');
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
-    background-size: 100% 100%;
 }
 .bg-slide{
-    background-color: rgba($color: #F7EAE8, $alpha: 0.9);
+    background-color: rgba($color: #2A4D14, $alpha: .8);
     width: 100% !important;
     height: 100vh !important;
     padding-top: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
     position: relative;
+    h2,p{
+        color: white;
+    }
+    
 }
 #logo{
     width: 150% !important;

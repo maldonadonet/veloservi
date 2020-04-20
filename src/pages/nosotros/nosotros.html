@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
 		<ion-buttons>
 			<button ion-button icon-only start (click)="abrirmenu()">
 				<ion-icon name="menu"></ion-icon>
@@ -7,36 +7,38 @@
 		</ion-buttons>
         <ion-title text-center>Nosotros</ion-title>
         <ion-buttons end>
-			<button ion-button icon-only start (click)="abrirmenu()">
-				<ion-icon name="exit"></ion-icon>
-			</button>
+			<a href="" ion-button icon-only start (click)="abrirmenu()">
+				<ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+            </a>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-	<ion-card>
-		<ion-card-header>
+     <ion-grid>
+         <ion-row>
             <ion-slides pager>
-
                 <ion-slide>
                     <img src="https://thenextscoop.com/wp-content/uploads/2018/11/Leverage-Trending-Products-to-Grow-your-Ecommerce-Business-1280x720.jpg" alt="">
                 </ion-slide>
-
                 <ion-slide>
                     <img src="https://noticiasbancarias.com/wp-content/uploads/2019/11/Paqueteria.jpg" alt="">
                 </ion-slide>
-
                 <ion-slide>
                     <img src="https://wrmx00.epimg.net/radio/imagenes/2019/11/12/hora_25/1573595975_635316_1573596215_miniatura_normal.jpg" alt="">
                 </ion-slide>
-
             </ion-slides>
+         </ion-row>
+     </ion-grid>
+
+	<ion-card style="margin-bottom: 20px; padding-bottom: 20px;">
+		<ion-card-header>
+           <img src="assets/imgs/logo_marca.png" alt="">
         </ion-card-header>
 		<ion-card-content>
-			<ion-card-title>
-				VELOSERVI
+			<ion-card-title text-center>
+				¿Quíenes Somos?
 			</ion-card-title>
 			<p text-justify>
 				Somos una empresa 100% Colombiana enfocados ofrecer el mejor servicio y con la mejor calidad a nuestras iniciales 4 cuidades y expandiendonos día a día.
@@ -45,24 +47,46 @@
 
             <h1 text-center>Nuestros Servicios</h1>
 
-            <ion-list inset>
-                <ion-item-group>
-                    <ion-item>
-                        <h2 text-center>Ecommerce Productos</h2>
-                        <img src="https://www.womgp.com/blog/wp-content/uploads/2015/03/e-commerce-platforms-660x330.png" alt="">
-                    </ion-item>
-                    <ion-item>
-                        <h2 text-center>Envío de paquetería</h2>
-                        <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10bgoR.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f" alt="">
-                    </ion-item>
-                    <ion-item>
-                        <h2 text-center>Transportes privados</h2>
-                        <img src="https://www.nitu.mx/wp-content/uploads/2017/07/arrendadora-de-autos.jpg" alt="">
-                    </ion-item>
-                </ion-item-group>
-            </ion-list>
+            <ion-row>
+                <ion-col col-12>
+                    <h2 text-center color="primary">Compra de productos</h2>
+                    <img src="https://www.hoysaludable.com/wp-content/uploads/2017/05/Productos-que-te-venden-en-el-supermercado-como-saludables-y-no-lo-son-HS.jpg" alt="">
+                </ion-col>
+                <ion-col col-12>
+                    <p text-justify padding>
+                        Solicita los productos que tenemos dados de alta en nuestro Store de Productos o solicita el producto que desees de cualquier sucursal (De las cuidades registradas) y recibelo en la puerta de tu casa.
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12>
+                    <h2 text-center>Envío de paquetería</h2>
+                    <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10bgoR.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f" alt="">
+                </ion-col>
+                <ion-col col-12>
+                    <p text-justify padding>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem repellat maxime impedit natus rem laboriosam suscipit eaque dolorem nulla libero aspernatur, itaque non architecto odit, possimus expedita? Modi, vitae delectus.</p>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-12>
+                    <h2 text-center>Transportes privados</h2>
+                    <img src="https://www.nitu.mx/wp-content/uploads/2017/07/arrendadora-de-autos.jpg" alt="">
+                </ion-col>
+                <ion-col col-12>
+                    <p text-justify padding>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, nesciunt nobis. Beatae voluptas, corrupti deleniti excepturi doloremque dolor assumenda culpa dolore minus consequatur veniam necessitatibus itaque, maiores hic, voluptates aliquid.</p>
+                </ion-col>
+            </ion-row>
+
+        
            
 		</ion-card-content>
     </ion-card>
     
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-title>VeloServi App 1.0.0</ion-title>
+    </ion-toolbar>
+</ion-footer>

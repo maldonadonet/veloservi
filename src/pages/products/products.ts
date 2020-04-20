@@ -53,7 +53,7 @@ export class ProductsPage {
 
 	salir() {
 		this._us.cerrar_sesion();
-		this.navCtrl.setRoot("WelcomePage");
+		this.navCtrl.setRoot("HomePage");
 	}
 
 	filtrar_categoria() {

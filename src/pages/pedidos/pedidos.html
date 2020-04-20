@@ -8,6 +8,45 @@
 		<ion-title>Pedidos</ion-title>
 	</ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+			Pedidos
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list>
+				<button ion-item *ngFor="let item of pedidos" clear item-right (click)="detalle(item)">
+					<ion-thumbnail item-left>
+						<img src="assets/imgs/pedido1.svg">
+					</ion-thumbnail>
+					<h2>Pedido: {{ item.id }}</h2>
+					<p>{{ item.direccion_entrega }}</p>
+					<p>{{ item.estatus }}</p>
+					<p>{{ item.fecha_pedido }}</p>
+					<p>{{ item.monto }}</p>
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
 
+	<ion-card>
+		<ion-card-header>
+			Pedidos Especiales
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list>
+				<button ion-item *ngFor="let item of pedidos" clear item-right (click)="detalle(item)">
+					<ion-thumbnail item-left>
+						<img src="assets/imgs/pedido1.svg">
+					</ion-thumbnail>
+					<h2>Pedido: {{ item.id }}</h2>
+					<p>{{ item.direccion_entrega }}</p>
+					<p>{{ item.estatus }}</p>
+					<p>{{ item.fecha_pedido }}</p>
+					<p>{{ item.monto }}</p>
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+	
 </ion-content>

@@ -77,15 +77,7 @@ export class PedidosProvider {
 		let cantidades = arrayCant.toString();
 		let ids = arrIds.toString();
 		let asociados = arrAsociados.toString();
-		let costos = arrCostos.toString();
-
-		// console.log('Cantidades: ', cantidades );
-		// console.log("Id_productos: ", ids);
-		// console.log("Asociados: ", asociados);
-		// console.log("Costos: ", costos);
-		// console.log( url );
-
-		
+		let costos = arrCostos.toString();		
 
 		return this.http.post(url, {cantidades,ids,total,asociados,costos}).map((resp)=>{
 
@@ -110,5 +102,14 @@ export class PedidosProvider {
 				}
 			});
 
+	}
+
+	obtener_pedidos() {
+		this.token = this._us.token;
+		let usuario = JSON.parse(this._us.User);
+
+		let url = URL_SERVICIOS + `/historial_pedidos/${usuario.id}/${this._us.token}`;
+
+		return this.http.get(url);
 	}
 }

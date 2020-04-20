@@ -40,7 +40,7 @@ export class MyApp {
 
   salir() {
     this._us.cerrar_sesion();
-    this.rootPage = 'WelcomePage';
+    this.rootPage = 'HomePage';
     this.menuCtrl.close();
     
   }

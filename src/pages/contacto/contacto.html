@@ -1,5 +1,5 @@
 <ion-header>
-	<ion-toolbar>
+	<ion-toolbar color="primary">
 		<ion-buttons>
 			<button ion-button icon-only start (click)="abrirmenu()">
 				<ion-icon name="menu"></ion-icon>
@@ -9,4 +9,65 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content>
+	<ion-card>
+		<ion-card-header text-center>
+			MEDIOS DE CONTACTO
+		</ion-card-header>
+		<ion-card-content>
+			<img src="assets/imgs/contact.png">
+			<p text-justify>
+				Nuestro equipo tecnico de asesores, está esperando todos tus comentarios y opiniones para hacer más placentera tu experiencia en nuestra aplicación multi-servicios.
+			</p>
+			<br>
+			<h2 text-center>Medios de contacto:</h2>
+			<ion-list>
+				<ion-row ion-item>
+					<ion-col col-6>
+						<ion-icon ios="ios-call" md="md-call"></ion-icon>
+						Teléfono: 
+					</ion-col>
+					<ion-col col-6>
+						<span>000-000-00</span>
+					</ion-col>
+				</ion-row>
+				<ion-row ion-item>
+					<ion-col col-6>
+						<ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+						Email: 
+					</ion-col>
+					<ion-col col-6>
+						<span>contacto@veloservi.com</span>
+					</ion-col>
+				</ion-row>
+				<ion-row ion-item>
+					<ion-col col-6>
+						<ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+						WhatsApp: 
+					</ion-col>
+					<ion-col col-6>
+						<span>00-000-000</span>
+					</ion-col>
+				</ion-row>
+			</ion-list>
+			<br>
+			<h3 text-center>Siguenos en redes sociales</h3>
+			<hr>
+			
+			<div text-center>
+				<a href="#"><ion-icon name="logo-facebook" class="icon-socialmedia"></ion-icon></a>
+				<a href="#"><ion-icon name="logo-twitter" class="icon-socialmedia"></ion-icon></a>
+				<a href="#"><ion-icon name="logo-instagram" class="icon-socialmedia"></ion-icon></a>
+				<a href="#"><ion-icon name="logo-linkedin" class="icon-socialmedia"></ion-icon></a>
+				<a href="#"><ion-icon name="logo-youtube" class="icon-socialmedia"></ion-icon></a>
+			</div>
+			
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar color="primary">
+		<ion-card-title color="white" text-center>VeloServi App 1.0.0</ion-card-title>
+	</ion-toolbar>
+</ion-footer>

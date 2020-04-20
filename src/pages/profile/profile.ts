@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,MenuController } from 'ionic-angular';
-import { Network } from "@ionic-native/network";
+import { ApiUsersProvider } from './../../providers/api-users/api-users';
+
 
 
 @IonicPage()
@@ -10,34 +11,20 @@ import { Network } from "@ionic-native/network";
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private network: Network) {
+  user:any = {};
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private menuCtrl: MenuController,
+              private _us: ApiUsersProvider) 
+  {
+    this._us.cargar_storage();
+    this.user = JSON.parse(this._us.User);
+    console.log(this.user);
   }
 
   ionViewDidLoad() {
-      let desconectar = this.network.onDisconnect().subscribe(()=>{
-        console.log('Estamos desconectados');
-      });
-
-      let conectar = this.network.onConnect().subscribe(()=>{
-        console.log('Estamos conectados');
-
-        setTimeout(()=> {
-
-          if(this.network.type == 'wifi') {
-            console.log( 'Estamos conectados por medio de wifi' );
-          }
-
-          if (this.network.type == "ethernet") {
-						console.log("Estamos conectados por medio de ethernet");
-          }
           
-          if (this.network.type == "3g") {
-            console.log("Estamos conectados por medio de 3G");
-          }
-
-
-        },3000);
-      });
 	}
 
   abrirmenu(){

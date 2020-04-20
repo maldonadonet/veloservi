@@ -1,3 +1,25 @@
 page-profile {
+    ion-card {
+        margin-top: 30px !important;
+    }
+    ion-row{
+        border-radius: 10px !important;
+        //border-bottom: .5px solid #000 !important;
+        margin: 5px !important;
+        ion-col{
+            font-size: .8em !important;
+        }
+    }
+}
 
+// Estilos personalizados
+#img-profile{
+    border-radius: 100%;
+    width: 40%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 4px #000;
+}
+
+.column-data{
+    
 }
