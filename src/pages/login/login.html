@@ -1,3 +1,9 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title text-center>Módulo de acceso a la App</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content padding>
 
     <ion-card>
@@ -37,17 +43,20 @@
                 </ion-row>
                 <ion-row>
                     <ion-col col-6>
-                        <button ion-button round full color="primary" (click)="ingresar()" [disabled]="usuario.length <= 5 || password.length <= 5">Ingresar</button>
+                        <button ion-button round full (click)="ingresar()" [disabled]="usuario.length <= 5 || password.length <= 5">Ingresar</button>
                     </ion-col>
                     <ion-col col-6>
-                        <button ion-button round full color="danger" (click)="cancelar()">Cancelar</button>
+                        <button ion-button round full (click)="cancelar()">Cancelar</button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
     </ion-card>
 
-
-
-
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title text-center>Inicio de sesión</ion-title>
+    </ion-toolbar>
+</ion-footer>

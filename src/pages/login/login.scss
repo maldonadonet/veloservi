@@ -7,6 +7,12 @@ page-login {
         ion-input {
             border-bottom: 1px solid #222222;
         }
+        button {
+            background: #000 !important;
+            color: #fff !important;
+            margin-top: 10px !important;
+            width: 90% !important;
+        }
     }
     ion-card {
         margin-top: 10% !important;

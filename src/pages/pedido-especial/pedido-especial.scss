@@ -3,7 +3,7 @@ page-pedido-especial {
     ion-header{
         width: 100%;
         height: 180px;
-        background-color: #047f0c;
+        background-color: #000;
         border-radius: 0px 0px 30px 30px;
         box-shadow: 1px 0px 4px #222222;
         margin-bottom: 20px;
@@ -14,7 +14,7 @@ page-pedido-especial {
         }
     }
     ion-content {
-        background-image: url('../../assets/imgs/bg1.jpg');
+        // background-image: url('../../assets/imgs/bg1.jpg');
         ion-card {
             border-radius: 10px !important;
             ion-textarea, ion-input {
@@ -22,6 +22,9 @@ page-pedido-especial {
                 border-radius: 10px;
                 padding: 2px !important;
             }
+        }
+        button {
+            width: 95% !important;
         }
     }
 }

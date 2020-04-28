@@ -112,4 +112,13 @@ export class PedidosProvider {
 
 		return this.http.get(url);
 	}
+
+	obtener_pedidos_especiales() {
+		this.token = this._us.token;
+		let usuario = JSON.parse(this._us.User);
+
+		let url = URL_SERVICIOS + `/historial_pedidos_especiales/${usuario.id}/${this._us.token}`;
+
+		return this.http.get(url);
+	}
 }

@@ -1,13 +1,16 @@
+
 #container {
-    background-image: url('../../assets/imgs/bg-welcome.jpeg');
+    background-image: url('../../assets/imgs/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
     height: 100vh;
-    background-position: top;
     position: relative;
 }
 
 #bg-welcome {
-    background-color: rgba(0, 143, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -33,5 +36,10 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 10px;
+}
 
+.btn-action{
+    width: 90% !important;
+    background: #fff !important;
+    color: black !important;
 }

@@ -1,0 +1,22 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Tab2</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  	<ion-list>
+		<button ion-item *ngFor="let item of pedidos" clear item-right (click)="detalle(item)">
+			<ion-thumbnail item-left>
+				<img src="assets/imgs/shopping-items.svg">
+			</ion-thumbnail>
+			<h2>Pedido: {{ item.id }}</h2>
+			<p>{{ item.direccion_entrega }}</p>
+			<p>{{ item.estatus }}</p>
+			<p>{{ item.fecha_pedido }}</p>
+			<p>{{ item.monto }}</p>
+		</button>
+	</ion-list>
+
+</ion-content>

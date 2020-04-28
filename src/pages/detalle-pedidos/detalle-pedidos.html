@@ -1,15 +1,62 @@
-<!--
-  Generated template for the DetallePedidosPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>DetallePedidosPage</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>DetallePedidosPage</ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <h1 text-center>Detalle del pedido</h1>
 
+    <ion-card mode="ios">
+        <ion-card-header>
+            <strong text-center>Datos del Pedido</strong>
+        </ion-card-header>
+        <ion-card-content>
+            <p><strong>Cliente:</strong> {{ items.nombre }}</p>
+            <p><strong>Dirección de entrega:</strong> {{ items.direccion_entrega }}</p>
+            <p><strong>Fecha de pedido:</strong> {{ items.fecha_pedido }}</p>
+            <p><strong>Estatus del pedido:</strong> {{ items.estatus }}</p>
+            <p><strong>Pedido No:</strong> {{ items.id_pedido }}</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card mode="ios">
+        <ion-card-header>
+            Detalle del Pedido
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-list-header>
+                    Detalle de los productos del Pedido
+                </ion-list-header>
+                <ion-item *ngFor="let item  of items.detalle">
+                    <ion-row>
+                        <ion-col col-6>
+                            <p>Producto: <strong>{{ item.nombre }}</strong></p>
+                            <p>Cantidad: <strong>{{ item.cantidad }}</strong></p>
+                            <p>Precio: <strong>${{ item.costo }}</strong></p>
+                        </ion-col>
+                        <ion-col col-6>
+                            <p>Total: $ {{ (item.costo * item.cantidad).toFixed(2) }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <br>                    
+                </ion-item>
+                <ion-row>
+                    <ion-col col-12 text-right>
+                        <p><strong id="total">Total del pedido: $ {{ (items.monto) }}</strong></p>
+                    </ion-col>
+                </ion-row>
+            </ion-list>   
+        </ion-card-content>
+    </ion-card>
+   
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title text-center>
+            <button ion-button navPush="PedidosPage">Regresar al listado de Pedidos</button>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>
