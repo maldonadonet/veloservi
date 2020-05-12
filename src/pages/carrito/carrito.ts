@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, AlertController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, AlertController,ToastController } from "ionic-angular";
 import { PedidosProvider } from '../../providers/pedidos/pedidos';
 
 
@@ -14,12 +14,7 @@ export class CarritoPage {
 	cupon: string = "";
 	habilitado = true;
 
-	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		private alertCtrl: AlertController,
-		private _ps: PedidosProvider
-	) {
+	constructor( public navCtrl: NavController,public navParams: NavParams,private alertCtrl: AlertController,private _ps: PedidosProvider, private toast: ToastController) {
 		this.data = navParams.get("data");
 	}
 
@@ -71,7 +66,14 @@ export class CarritoPage {
 							if (item.producto.id == id) {
 								item.cantidad = data.newcant;
 							}
-						});
+                        });
+                        
+                        this.toast.create({
+                            message: 'Cantidad modificada correctamente',
+                            duration: 2000
+                        }).present();
+
+                        this.actualizarTotal();
 					},
 				},
 			],
@@ -81,17 +83,14 @@ export class CarritoPage {
 
 	// ELiminar item del carrito
 	eliminaritem(id) {
-		this._ps.crear_pedido(this.data, this.total).subscribe(()=>{
-
-		});
-
-		// this.data.filter((item) => {
-		// 	this.data.splice(id, 1);
-		// });
-		//
-		// if (this.data.length <= 0) {
-		// 	this.total = 0;
-		// }
+		
+        let newData = this.data.splice(id,1);
+        
+        this.toast.create({
+            message: 'Producto eliminado del carrito',
+            duration: 2000
+        }).present();
+        this.actualizarTotal();
 	}
 
 	vaciarCarrito() {
@@ -109,8 +108,12 @@ export class CarritoPage {
 				totales = totales + element.producto.precio * element.cantidad;
 
 				this.total = totales;
-			});
-		}
+            });
+        }
+        if(this.data.length <= 0){
+            console.log('Ya no tenemos ningun producto en el carrito');
+            this.total = 0;
+        }
 	}
 
 	aplicarCupon() {

@@ -7,7 +7,7 @@
 <ion-content>
 
     <h2 text-center>Carrito de compras</h2>
-    <p text-center>Detalle de operaciones</p>
+    <p text-center>Productos agregados</p>
 
     <ion-grid *ngIf="data">
         <ion-row id="row-header">
@@ -24,7 +24,7 @@
                 <strong>Total</strong>
             </ion-col>
             <ion-col col-3>
-                <strong>Acciones</strong>
+                <strong>Operaciones</strong>
             </ion-col>
         </ion-row>
         <ion-row *ngFor="let item of data; let i = index" id="row-result">
@@ -52,31 +52,16 @@
             </ion-col>
         </ion-row>
         <ion-row id="row-result">
-            <ion-col col-4>
+            <!-- <ion-col col-12 text-center>
                 <button ion-button small (click)="actualizarTotal()">Actualizar total</button>
-            </ion-col>
-            <ion-col col-3>
-                
-            </ion-col>
-            <ion-col col-2 text-center>
-                <strong>Total</strong>
-            </ion-col>
-            <ion-col col-3 text-right>
-                <span style="color:#c70039;">$ {{ (total).toFixed(2) }}</span>
+            </ion-col> -->
+            <ion-col col-12 text-center id="col-result">
+                <p id="total">Total del pedido: $ {{ (total).toFixed(2) }}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <ion-grid>
-        <ion-row>
-            <ion-col col-4>
-                <ion-input type="text" placeholder="Introducir código" mode="ios" id="input-cupon" [(ngModel)]="cupon"></ion-input>
-            </ion-col>
-            <ion-col col-8>
-                <button ion-button small color="primary" (click)="aplicarCupon()" [disabled]="habilitado==false">Aplicar</button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+   
 
     <div *ngIf="data.length <= 0" text-center style="margin-top: 20px !important;">
         <img src="assets/imgs/online-shopping.svg" width="30%">
@@ -84,25 +69,21 @@
         <p>favor de ir a la zona de productos y añadir productos al carrito para hacer tu Pedido.</p>
     </div>
 
+</ion-content>
+
+<ion-footer>
     <div *ngIf="data.length > 0">
         <ion-grid>
             <ion-row>
-                <ion-col col-6>
-                    <button ion-button round full color="danger" (click)="vaciarCarrito()">Vaciar carrito</button>
+                <ion-col col-6 text-center>
+                    <button ion-button round full color="danger" (click)="vaciarCarrito()" class="btn-footer">Vaciar carrito</button>
                 </ion-col>
-                <ion-col col-6>
-                    <button ion-button round full color="primary" (click)="enviarPedido()">Enviar pedido</button>
+                <ion-col col-6 text-center>
+                    <button ion-button round full color="primary" (click)="enviarPedido()" class="btn-footer">Enviar pedido</button>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </div>
-
-</ion-content>
-
-<ion-footer>
-    <ion-toolbar color="primary">
-        <ion-title text-center>VeloServi 1.0.0</ion-title>
-    </ion-toolbar>
 </ion-footer>
 
 

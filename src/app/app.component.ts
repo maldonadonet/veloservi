@@ -21,14 +21,14 @@ export class MyApp {
 
       if(this._us.usuario_activo()){
         this.rootPage = 'ProductsPage';
+        statusBar.styleDefault();
+        splashScreen.hide();
       }else {
         this.rootPage = "HomePage";
+        statusBar.styleDefault();
+        splashScreen.hide();
       }
 
-
-
-      statusBar.styleDefault();
-      splashScreen.hide();
     });
   }
 

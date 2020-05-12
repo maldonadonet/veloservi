@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//import { URLSearchParams } from "@angular/http";
 import { AlertController, Platform } from "ionic-angular";
 import { URL_SERVICIOS } from "../../config/url.servicios";
 import { Storage } from "@ionic/storage";
@@ -12,12 +11,8 @@ export class ApiUsersProvider {
     token: string;
     User: any = {};
 
-    constructor( public http: HttpClient,
-                private alertCtrl: AlertController,
-                private platform: Platform,
-                private storage: Storage) 
-    {
-        console.log("Hello ApiUsersProvider Provider");
+    constructor(public http: HttpClient,private alertCtrl: AlertController,private platform: Platform,private storage: Storage) {
+        console.log("Services Provider Users");
         this.cargar_storage();
     }
 
@@ -32,16 +27,16 @@ export class ApiUsersProvider {
     login(email: string, password: string) {
         let url = URL_SERVICIOS + "/login";
 
-        return this.http.post(url, { email, password }).map(resp => {
+        return this.http.post(url, { email, password }).map((resp) => {
             let data_resp = resp;
             console.log(data_resp);
 
-            if (data_resp['error']) {
+            if (data_resp["error"]) {
                 this.alertCtrl
                     .create({
                         title: "Error al Iniciar",
                         subTitle: data_resp["message"],
-                        buttons: ["Ok"]
+                        buttons: ["Ok"],
                     })
                     .present();
             } else {
@@ -52,7 +47,7 @@ export class ApiUsersProvider {
                     .create({
                         title: data_resp["message"],
                         subTitle: "No olvides cerrar sesión al finalizar.",
-                        buttons: ["Ok"]
+                        buttons: ["Ok"],
                     })
                     .present();
                 // Guardar en el Storage.
@@ -61,10 +56,10 @@ export class ApiUsersProvider {
         });
     }
 
-    register(nombre:string, email: string, password: string) {
+    register(nombre: string, email: string, password: string) {
         let url = URL_SERVICIOS + "/register";
 
-        return this.http.post(url, { nombre, email, password }).map(resp => {
+        return this.http.post(url, { nombre, email, password }).map((resp) => {
             let data_resp = resp;
             console.log(data_resp);
 
@@ -73,17 +68,18 @@ export class ApiUsersProvider {
                     .create({
                         title: "Error al crear Usuario",
                         subTitle: data_resp["message"],
-                        buttons: ["Ok"]
+                        buttons: ["Ok"],
                     })
                     .present();
             } else {
                 this.alertCtrl
                     .create({
                         title: data_resp["respuesta"],
-                        subTitle:"Favor de iniciar sesión con tus datos registrados.",
-                        buttons: ["Ok"]
+                        subTitle:
+                            "Favor de iniciar sesión con tus datos registrados.",
+                        buttons: ["Ok"],
                     })
-                    .present();                
+                    .present();
             }
         });
     }
@@ -115,18 +111,19 @@ export class ApiUsersProvider {
             if (this.platform.is("cordova")) {
                 // Device
                 this.storage.ready().then(() => {
-                    this.storage.get("token").then(token => {
+                    this.storage.get("token").then((token) => {
                         if (token) {
                             this.token = token;
                         }
                     });
 
-                    this.storage.get("usuario").then(usuario => {
+                    this.storage.get("usuario").then((usuario) => {
                         if (usuario) {
                             this.User = usuario;
                         }
                         resolve();
                     });
+                    
                 });
             } else {
                 // Desktop
@@ -138,5 +135,42 @@ export class ApiUsersProvider {
             }
         });
         return promesa;
+    }
+
+    updateProfile(user:any) {
+
+        console.log(user);
+        let nombre = user.nombre;
+        let direccion = user.direccion;
+        let cuidad = user.cuidad;
+        let telefono = user.telefono;
+        let dni = user.dni;
+        let img_perfil = user.img_perfil;
+        let email = user.email;
+        let password = user.password;
+
+        let url = URL_SERVICIOS + `/actualizar_perfil/${user.id}/${this.token}`;
+
+        return this.http.post(url, { nombre,direccion,cuidad,telefono,dni,img_perfil,email,password }).map((resp) => {
+            let data_resp = resp;
+            console.log(data_resp);
+
+            if (data_resp["error"]) {
+                this.alertCtrl
+                    .create({
+                        title: "Error al actualizar datos",
+                        subTitle: data_resp["message"],
+                        buttons: ["Ok"],
+                    })
+                    .present();
+            } else {
+                this.alertCtrl
+                    .create({
+                        title: "Datos del perfil actualizados correctamente",
+                        subTitle: "Inicia sesión de nuevo para cargar tus nuevos datos",
+                        buttons: ["Ok"],
+                    }).present();
+            }
+        });
     }
 }

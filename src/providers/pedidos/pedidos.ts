@@ -13,14 +13,8 @@ export class PedidosProvider {
 
 	token:any;
 
-	constructor(
-		public http: HttpClient,
-		private alertCtrl: AlertController,
-		private platform: Platform,
-		private storage: Storage,
-		private _us: ApiUsersProvider
-	) {
-		console.log("Pedidos Provider");
+	constructor(public http: HttpClient,private alertCtrl: AlertController,private platform: Platform,private storage: Storage,private _us: ApiUsersProvider) {
+		console.log("Service Provider Pedidos");
 	}
 
 	pedido_esp( nombre_sucursal: string, direccion_sucursal: string, productos:string, dir_entrega ) {

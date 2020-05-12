@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>editProfile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-content>
+            <ion-list>
+
+                <ion-item>
+                    <ion-label>Nombre</ion-label>
+                    <ion-input type="text" [value]="user.nombre" [(ngModel)]="user.nombre"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Dirección</ion-label>
+                    <ion-input type="text" [value]="user.direccion" [(ngModel)]="user.direccion"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Cuidad</ion-label>
+                    <ion-input type="text" [value]="user.cuidad" [(ngModel)]="user.cuidad"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>DNI</ion-label>
+                    <ion-input type="text" [value]="user.dni" [(ngModel)]="user.dni"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Email</ion-label>
+                    <ion-input type="email" [value]="user.email" [(ngModel)]="user.email"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Contraseña</ion-label>
+                    <ion-input type="password" [value]="user.password" [(ngModel)]="user.password"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Telefono</ion-label>
+                    <ion-input type="tel" [value]="user.telefono" [(ngModel)]="user.telefono"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <button ion-button (click)="update()">Actualizar datos</button>
+                </ion-item>
+
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

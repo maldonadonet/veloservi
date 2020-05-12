@@ -6,32 +6,32 @@ import { ApiUsersProvider } from './../../providers/api-users/api-users';
 
 @IonicPage()
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+    selector: "page-profile",
+    templateUrl: "profile.html",
 })
 export class ProfilePage {
+    user: any = {};
 
-  user:any = {};
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private menuCtrl: MenuController,
+        private _us: ApiUsersProvider
+    ) {
+        this._us.cargar_storage();
+        this.user = JSON.parse(this._us.User);
+        console.log(this.user);
+    }
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private menuCtrl: MenuController,
-              private _us: ApiUsersProvider) 
-  {
-    this._us.cargar_storage();
-    this.user = JSON.parse(this._us.User);
-    console.log(this.user);
-  }
+    ionViewDidLoad() {}
 
-  ionViewDidLoad() {
-          
-	}
+    abrirmenu() {
+        this.menuCtrl.toggle();
+    }
 
-  abrirmenu(){
-    this.menuCtrl.toggle();
-  }
+    actualizar_perfil(){
+      this.navCtrl.push("EditProfilePage", { user: this.user });
+    }
 
-  // watch network for a disconnection
-  
-
+    // watch network for a disconnection
 }

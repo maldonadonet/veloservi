@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController,NavParams,LoadingController,AlertController, MenuController} from "ionic-angular";
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, MenuController, Platform, ToastController } from "ionic-angular";
+import { Storage } from "@ionic/storage";
+
 // Provider Users
 import { ApiUsersProvider } from '../../providers/api-users/api-users';
 import { ApiProductsProvider } from '../../providers/api-products/api-products';
@@ -9,234 +11,253 @@ import { stringify } from '@angular/core/src/util';
 
 @IonicPage()
 @Component({
-	selector: "page-products",
-	templateUrl: "products.html",
+    selector: "page-products",
+    templateUrl: "products.html",
 })
+
 export class ProductsPage {
-	usuario: any[] = [];
-	productos: any[] = [];
-	page: number = 1;
-	carrito: any[] = [];
-	asociados: any[] = [];
-	promocion: boolean = false;
+    usuario: any[] = [];
+    productos: any[] = [];
+    page: number = 1;
+    carrito: any[] = [];
+    asociados: any[] = [];
+    promocion: boolean = false;
+    carritostorage:string [] = [];
 
-	constructor(
-		public navCtrl: NavController,
-		public _us: ApiUsersProvider,
-		public _ps: ApiProductsProvider,
-		public loadingCtrl: LoadingController,
-		public alertCtrl: AlertController,
-		private menuCtrl: MenuController,
-		public navParams: NavParams
-	) {
-		this._us.cargar_storage();
-		this.usuario = JSON.parse(this._us.User);
-		console.log('msg', navParams.get('data') );
-		if( navParams.get('data') == 'vaciar'){
-			console.log('vaciar el carrito');
-			this.carrito = [];
-		}
-	}
+    productosStore: any[] = [];
 
-	ionViewDidLoad() {
-		let loading = this.loadingCtrl.create({
-			content: "Cargando productos...",
-		});
+    constructor( public navCtrl: NavController, public _us: ApiUsersProvider, public _ps: ApiProductsProvider, public loadingCtrl: LoadingController,public alertCtrl:AlertController, private menuCtrl: MenuController, public navParams: NavParams, private platform: Platform, private storage: Storage, private toastCtrl: ToastController) {
+        if (navParams.get('data') == 'vaciar') {
+            console.log('vaciar el carrito');
+            this.carrito = [];
+        }
+        
+    }
 
-		loading.present();
+    ionViewDidLoad() {
+        let loading = this.loadingCtrl.create({
+            content: "Cargando productos...",
+        });
 
-		this._ps.getProducts().subscribe((data: any) => {
-			this.productos = data.data.data;
-			loading.dismiss();
-		});
-	}
+        loading.present();
 
-	salir() {
-		this._us.cerrar_sesion();
-		this.navCtrl.setRoot("HomePage");
-	}
+        this._ps.getProducts().subscribe((data: any) => {
+            this.productos = data.data.data;
+            loading.dismiss();
+        });
+    }
 
-	filtrar_categoria() {
-		this.filtrar();
-	}
+    salir() {
+        this._us.cerrar_sesion();
+        this.navCtrl.setRoot("HomePage");
+    }
 
-	filtrar() {
-		let alert = this.alertCtrl.create();
-		alert.setTitle("Filtrar por Categoría");
+    filtrar_categoria() {
+        this.filtrar();
+    }
 
-		alert.addInput({
-			type: "radio",
-			label: "Farmacia",
-			value: "Farmacia",
-			checked: false,
-		});
-		alert.addInput({
-			type: "radio",
-			label: "Ropa",
-			value: "Ropa",
-			checked: false,
-		});
-		alert.addInput({
-			type: "radio",
-			label: "Tienda",
-			value: "Tienda",
-			checked: false,
-		});
-		alert.addInput({
-			type: "radio",
-			label: "Zapatos",
-			value: "Zapatos",
-			checked: false,
-		});
+    filtrar() {
+        let alert = this.alertCtrl.create();
+        alert.setTitle("Filtrar por Categoría");
 
-		alert.addButton("Cancel");
-		alert.addButton({
-			text: "Filtrar",
-			handler: (data) => {
-				console.log(data);
-				if (data == undefined) {
-					return;
-				} else {
-					this._ps.filtrarCategoria(data).subscribe((data: any) => {
-						console.log("Categoria: ", data.data.data);
-						this.productos = data.data.data;
-					});
-				}
-			},
-		});
-		alert.present();
-	}
+        alert.addInput({
+            type: "radio",
+            label: "Farmacia",
+            value: "Farmacia",
+            checked: false,
+        });
+        alert.addInput({
+            type: "radio",
+            label: "Ropa",
+            value: "Ropa",
+            checked: false,
+        });
+        alert.addInput({
+            type: "radio",
+            label: "Tienda",
+            value: "Tienda",
+            checked: false,
+        });
+        alert.addInput({
+            type: "radio",
+            label: "Zapatos",
+            value: "Zapatos",
+            checked: false,
+        });
 
-	filtrar_asociado() {
-		this.filtrarAsociado();
-	}
+        alert.addButton("Cancel");
+        alert.addButton({
+            text: "Filtrar",
+            handler: (data) => {
+                console.log(data);
+                if (data == undefined) {
+                    return;
+                } else {
+                    this._ps.filtrarCategoria(data).subscribe((data: any) => {
+                        console.log("Categoria: ", data.data.data);
+                        this.productos = data.data.data;
+                    });
+                }
+            },
+        });
+        alert.present();
+    }
 
-	filtrarAsociado() {
-		let alert = this.alertCtrl.create();
-		alert.setTitle("Filtrar por Asociado");
+    filtrar_asociado() {
+        this.filtrarAsociado();
+    }
 
-		let item: any = [];
+    filtrarAsociado() {
+        let alert = this.alertCtrl.create();
+        alert.setTitle("Filtrar por Asociado");
 
-		this._ps.obtenerAsociados().subscribe((data: any) => {
-			this._ps.asociados.forEach((element) => {
-				alert.addInput({
-					type: "radio",
-					label: element.nombre,
-					value: element.id,
-					checked: false,
-				});
-			});
+        let item: any = [];
 
-			alert.addButton("Cancel");
-			alert.addButton({
-				text: "Filtrar",
-				handler: (data) => {
-					console.log(data);
-					if (data == undefined) {
-						return;
-					} else {
-						this._ps
-							.filtrarAsociado(data)
-							.subscribe((data: any) => {
-								console.log("Asociado_Id: ", data.data.data);
-								this.productos = data.data.data;
-							});
-					}
-				},
-			});
-			alert.present();
-		});
-	}
+        this._ps.obtenerAsociados().subscribe((data: any) => {
+            this._ps.asociados.forEach((element) => {
+                alert.addInput({
+                    type: "radio",
+                    label: element.nombre,
+                    value: element.id,
+                    checked: false,
+                });
+            });
 
-	loadData(event) {
-		console.log("Cargando productos");
-		let newData: string[] = [];
+            alert.addButton("Cancel");
+            alert.addButton({
+                text: "Filtrar",
+                handler: (data) => {
+                    console.log(data);
+                    if (data == undefined) {
+                        return;
+                    } else {
+                        this._ps
+                            .filtrarAsociado(data)
+                            .subscribe((data: any) => {
+                                console.log("Asociado_Id: ", data.data.data);
+                                this.productos = data.data.data;
+                            });
+                    }
+                },
+            });
+            alert.present();
+        });
+    }
 
-		setTimeout(() => {
-			this._ps.nextPage(2).subscribe((data: any) => {
-				for (let i = 0; i <= data.data.data.length; i++) {
-					newData.push(data.data.data[i]);
-				}
+    filtrar_promociones() {
+        this.filtrarPromociones();
+    }
 
-				console.log(newData);
+    filtrarPromociones() {
+        let alert = this.alertCtrl.create();
+        alert.setTitle("Mostrar productos en Promoción");
 
-				event.complete();
-			});
-		}, 1000);
-	}
+        alert.addButton("Cancel");
+        alert.addButton({
+            text: "Filtrar",
+            handler: (data) => {
+                this._ps.filtrarPromocion().subscribe((data: any) => {
+                    console.log("Promociones: ", data.data.data);
+                    this.productos = data.data.data;
+                    this.promocion = true;
+                });
+            },
+        });
+        alert.present();
+    }
 
-	addCarrito(item) {
-		this.abrirModal(item);
-	}
+    // funcion para cargar mas productos al infinited Scroll
+    loadData(event) {
+        console.log("Cargando productos");
+        let newData: string[] = [];
 
-	abrirModal(item) {
-		const prompt = this.alertCtrl.create({
-			title: "Agregar al Carrito",
-			message: "Confirmación de datos",
-			inputs: [
-				{
-					name: "cantidad",
-					placeholder: "Cantidad",
-					type: "number",
-				},
-			],
-			buttons: [
-				{
-					text: "Cancelar",
-					handler: (data) => {
-						console.log("Cancel clicked");
-					},
-				},
-				{
-					text: "Agregar",
-					handler: (data) => {
-						console.log("Cantidad: ", data);
-						console.log("Product_id: ", item.id);
-						this.carrito.push({
-							producto: item,
-							cantidad: data.cantidad,
-						});
-						console.log(this.carrito);
-					},
-				},
-			],
-		});
-		prompt.present();
-	}
+        setTimeout(() => {
+            this._ps.nextPage(2).subscribe((data: any) => {
+                for (let i = 0; i <= data.data.data.length; i++) {
+                    newData.push(data.data.data[i]);
+                }
 
-	irCarrito() {
-		this.navCtrl.push("CarritoPage", {
-			data: this.carrito,
-		});
-	}
+                console.log(newData);
 
-	filtrar_promociones() {
-		this.filtrarPromociones();
-	}
+                event.complete();
+            });
+        }, 1000);
+    }
 
-	filtrarPromociones() {
-		let alert = this.alertCtrl.create();
-		alert.setTitle("Mostrar productos en Promoción");
+    addCarrito(item) {
+        this.abrirModal(item);
+    }
 
-		alert.addButton("Cancel");
-		alert.addButton({
-			text: "Filtrar",
-			handler: (data) => {
-				this._ps.filtrarPromocion().subscribe((data: any) => {
-					console.log("Promociones: ", data.data.data);
-					this.productos = data.data.data;
-					this.promocion = true;
-				});
-			},
-		});
-		alert.present();
-	}
+    // process agregar al carrito
+    abrirModal(item) {
+        const prompt = this.alertCtrl.create({
+            title: "Agregar al Carrito",
+            message: "Confirmación de datos",
+            inputs: [
+                {
+                    name: "cantidad",
+                    placeholder: "Cantidad",
+                    type: "number",
+                    min: 1
+                },
+            ],
+            buttons: [
+                {
+                    text: "Cancelar",
+                    handler: (data) => {
+                        console.log("Cancel clicked");
+                    },
+                },
+                {
+                    text: "Agregar",
+                    handler: (data) => {
+                        console.log(data);
+                        console.log("Product_id: ", item.id);
 
-	navigatePedidoEsp() {
-		this.navCtrl.push("PedidoEspecialPage");
-	}
+                        if(data.cantidad <= 0){
+                            console.log('No se introdujo una cantidad valida');
+                            this.toastCtrl.create({
+                                message: 'Favor de introducir una cantidad valida',
+                                duration: 2000
+                            }).present();
 
-	openModal() {
-		this.menuCtrl.toggle();
-	}
+                            return;
+                        }
+
+                        this.carrito.push({
+                            producto: item,
+                            cantidad: data.cantidad,
+                        });
+
+                        this.toastCtrl.create({
+                            message: 'Producto agregardo correctamente',
+                            duration: 2000
+                        }).present();
+
+                        console.log(this.carrito);
+                    },
+                },
+            ],
+        });
+        prompt.present();
+    }
+
+    irCarrito() {
+        this.navCtrl.push("CarritoPage", { data: this.carrito });
+    }
+
+    navigatePedidoEsp() {
+        this.navCtrl.push("PedidoEspecialPage");
+    }
+
+    openModal() {
+        this.menuCtrl.toggle();
+    }
+
+    agregar_carrito_storage(id,cantidad) {
+
+
+    }
+
+    
 }

@@ -1,20 +1,21 @@
-
 <ion-header>
-  <ion-grid>
-    <ion-row style="background-color: rgb(73, 69, 69); padding-left: 4px !important;">
-      <ion-col col-1>
-        <ion-icon ios="ios-menu" md="md-menu" style="font-size: 2.5em; color:whitesmoke;" (click)="openModal()"></ion-icon>
-      </ion-col>
-      <ion-col col-9 id="col-title">
-        <span id="title" style="color: white;">VeloServi Shop</span>
-      </ion-col>
-      <ion-col col-1 text-right id="col-cart">
-        <ion-icon ios="ios-cart" md="md-cart" style="font-size:2em; margin-top: 10px; color: white;" (click)="irCarrito()"></ion-icon>
-        <ion-badge item-end style="position: absolute; top: 8px; right: -13px;">{{ carrito.length }}</ion-badge>
-      </ion-col>
-    </ion-row>
-  </ion-grid>  
-  
+    <ion-grid>
+        <ion-row style="background-color: rgb(0, 0, 0); padding-left: 4px !important;">
+            <ion-col col-1 id="icon-menu">
+                <a (click)="openModal()">
+                    <img src="assets/imgs/menu-icon.svg">
+                </a>
+            </ion-col>
+            <ion-col col-9 id="col-title">
+                <span id="title">VeloServi App</span>
+            </ion-col>
+            <ion-col col-1 text-right id="col-cart" text-right>
+                <img src="assets/imgs/commerce.svg" alt="" (click)="irCarrito()">
+                <ion-badge item-end id="badge">{{ carrito.length }}</ion-badge>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 
 </ion-header>
 
@@ -39,7 +40,7 @@
                         <!-- <a ion-button round class="action">Agregar Promo</a> -->
                         <img src="assets/imgs/slides-product_page/promo3.jpg" alt="">
                     </ion-slide>
-                        
+
                 </ion-slides>
             </ion-col>
         </ion-row>
@@ -53,24 +54,24 @@
                 <button ion-button round (click)="navigatePedidoEsp()">Realizar pedido Especial</button>
             </ion-col>
         </ion-row>
-        
+
         <ion-row>
-            <ion-col col-12  text-center>
+            <ion-col col-12 text-center>
                 <strong>Filtrar por:</strong>
             </ion-col>
-            <ion-col col-4>
-                <button ion-button round small (click)="filtrar_asociado()">Sucursal</button>
+            <ion-col col-4 text-center>
+                <button ion-button round small (click)="filtrar_asociado()" class="btn-small">Sucursal</button>
             </ion-col>
-            <ion-col col-4>
-                <button ion-button round small (click)="filtrar_categoria();">Categoría</button>
+            <ion-col col-4 text-center>
+                <button ion-button round small (click)="filtrar_categoria();" class="btn-small">Categoría</button>
             </ion-col>
-            <ion-col col-4>
-                <button ion-button round small (click)="filtrar_promociones();">Promoción</button>
+            <ion-col col-4 text-center>
+                <button ion-button round small (click)="filtrar_promociones();" class="btn-small">Promoción</button>
             </ion-col>
         </ion-row>
     </ion-grid>
-    
-    
+
+
     <ion-grid>
         <ion-row>
             <ion-col col-6 *ngFor="let item of productos">
@@ -78,13 +79,19 @@
                     <ion-card-content>
                         <img src="assets/imgs/products/{{ item.foto }}">
                         <p id="label-promo" *ngIf="promocion">% Descuento</p>
-                        <strong><p text-center> {{ item.nombre }}</p></strong>
-                        <p text-center>Precio: $ <span style="color:#c70039">{{ item.precio }}.00</span></p>
-                        <span>Categoría: {{ item.categoria }}</span><br>
-                        <span>Product_id: {{ item.id }}</span><br>
+                        <div padding>
+                            <strong>
+                                <p text-center id="nameProduct"> {{ item.nombre }}</p>
+                            </strong>
+                            <p text-center><span style="color:#c70039; font-weight: 700;">$ {{ item.precio }}</span></p>
+                            <span text-center>Categoría: {{ item.categoria }}</span><br>
+                        </div>
                         <hr>
                         <div text-center>
-                            <button ion-button small (click)="addCarrito(item);"> <ion-icon ios="ios-cart" md="md-cart"></ion-icon></button>
+                            <button ion-button block (click)="addCarrito(item);">
+                                <ion-icon ios="ios-cart" md="md-cart"></ion-icon> &nbsp;
+                                 Agregar
+                            </button>
                         </div>
                     </ion-card-content>
                 </ion-card>
@@ -93,6 +100,7 @@
     </ion-grid>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="cargando productos.."></ion-infinite-scroll-content>
+        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="cargando productos..">
+        </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

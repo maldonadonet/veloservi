@@ -16,14 +16,8 @@ export class ApiProductsProvider {
 	token: any;
 	asociados: any[] = [];
 
-	constructor(
-		public http: HttpClient,
-		private alertCtrl: AlertController,
-		private platform: Platform,
-		private storage: Storage,
-		private _us: ApiUsersProvider
-	) {
-		console.log("Servicio Productos");
+	constructor( public http: HttpClient, private alertCtrl: AlertController, private platform: Platform,private storage: Storage,private _us: ApiUsersProvider) {
+		console.log("Service Provider Products");
 	}
 
 	private guardar_storage() {

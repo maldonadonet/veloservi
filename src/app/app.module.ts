@@ -6,13 +6,24 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
-import { ApiUsersProvider } from '../providers/api-users/api-users';
+
 import { IonicStorageModule } from "@ionic/storage";
+
+// Providers
+import { ApiUsersProvider } from '../providers/api-users/api-users';
 import { ApiProductsProvider } from '../providers/api-products/api-products';
 import { PedidosProvider } from '../providers/pedidos/pedidos';
 
 // List Plugins
 import { Network } from "@ionic-native/network";
+
+// Firebase
+import { FIREBASE_CONFIG } from './app.firebase.config';
+
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { FirestoreProvider } from '../providers/firestore/firestore';
 
 @NgModule({
 	declarations: [MyApp],
@@ -21,6 +32,9 @@ import { Network } from "@ionic-native/network";
 		IonicModule.forRoot(MyApp),
 		HttpClientModule,
 		IonicStorageModule.forRoot(),
+		AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    	AngularFireAuthModule,
+    	AngularFirestoreModule,
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [MyApp],
@@ -31,7 +45,8 @@ import { Network } from "@ionic-native/network";
 		ApiUsersProvider,
 		ApiProductsProvider,
 		PedidosProvider,
-		Network
+		Network,
+		FirestoreProvider
 	],
 })
 export class AppModule {}
