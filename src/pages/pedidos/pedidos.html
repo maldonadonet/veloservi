@@ -1,20 +1,16 @@
-<ion-header>
-  	<ion-toolbar>
-		<ion-row>
-			<ion-col col-1>
-				<ion-buttons>
-					<button ion-button icon-only start (click)="abrirmenu()">
-						<ion-icon name="menu"></ion-icon>
-					</button>
-				</ion-buttons>
-			</ion-col>
-			<ion-col col-11>
-				<ion-title text-right>Historial de Pedidos</ion-title>		
-			</ion-col>
-		</ion-row>
-		<!-- 
-		 -->
-	</ion-toolbar>
+<ion-header style="background-color: rgb(0, 0, 0);">
+    <ion-grid>
+        <ion-row style="background-color: rgb(0, 0, 0); padding-left: 4px !important;">
+            <ion-col col-1 id="icon-menu">
+                <a (click)="abrirmenu()">
+                    <img src="assets/imgs/menu-icon.svg">
+                </a>
+            </ion-col>
+            <ion-col col-9 id="col-title">
+                <span id="title">Historial de Pedidos</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-header>
 
 <ion-tabs>

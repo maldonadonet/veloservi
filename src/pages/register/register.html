@@ -1,55 +1,41 @@
 <ion-content padding>
 
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title text-center>
-                CREACIÓN DE CUENTAS DE USUARIOS
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-12 text-center>
-                        <img src="assets/imgs/register/log-in.svg" id="logo">
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-12 text-center>
-                        <h1>VELOSERVI 1.0.0</h1>
-                        <hr><br>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-12>
-                        <ion-label>Nombre completo:</ion-label>
-                        <ion-input type="text" [(ngModel)]="nombre"></ion-input>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-12>
-                        <ion-label>Correo Electronico:</ion-label>
-                        <ion-input type="email" [(ngModel)]="email"></ion-input>
-                    </ion-col>
-                </ion-row>
-                 <ion-row>
-                    <ion-col col-12>
-                        <ion-label>Contraseña:</ion-label>
-                        <ion-input type="password" [(ngModel)]="password"></ion-input>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-6>
-                        <button ion-button round full color="primary" (click)="registrar()">Registrar</button>
-                    </ion-col>
-                    <ion-col col-6>
-                        <button ion-button round full color="danger" (click)="cancelar()">Cancelar</button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 text-center>
+                <img src="assets/imgs/logo_veloservi2.png" width="80%">
+            </ion-col>
+        </ion-row>
+        <br>
+    
+        <ion-row>
+            <ion-col col-12>
+                <ion-label>Nombre completo</ion-label>
+                <ion-input type="text" required placeholder="Ingresar correo registrado" [(ngModel)]="nombre"></ion-input>
 
-
-
+                <ion-label>Correo Electronico</ion-label>
+                <ion-input type="email" required placeholder="Ingresar correo registrado" [(ngModel)]="email"></ion-input>
+    
+                <ion-label>Contraseña</ion-label>
+                <ion-input type="password" required placeholder="Contraseña de acceso" [(ngModel)]="password"></ion-input>
+    
+            </ion-col>
+            <ion-col col-12>
+                <ion-label>Cuidad</ion-label>
+                <ion-select class="cuidades" placeholder="Cuidades" [(ngModel)]="cuidad">
+                    <ion-option value="Neiva">Neiva</ion-option>
+                    <ion-option value="Garzon">Garzon</ion-option>
+                    <ion-option value="Pitalito">Pitalito</ion-option>
+                    <ion-option value="La plata">La plata</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-12>
+                <button ion-button round full (click)="registrar()"
+                    [disabled]="nombre.length <= 3 || email.length <= 5 || password.length <= 5 || cuidad.length <= 3">Ingresar</button>
+                <button ion-button round full (click)="cancelar()">Regresar</button>
+            </ion-col>
+        </ion-row>
+    
+    </ion-grid>
 
 </ion-content>

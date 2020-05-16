@@ -11,26 +11,17 @@ import { PedidosProvider } from '../../providers/pedidos/pedidos';
 export class CarritoPage {
 	data: any[] = [];
 	total = 0;
-	cupon: string = "";
-	habilitado = true;
 
 	constructor( public navCtrl: NavController,public navParams: NavParams,private alertCtrl: AlertController,private _ps: PedidosProvider, private toast: ToastController) {
 		this.data = navParams.get("data");
 	}
 
 	ionViewDidLoad() {
-		console.log("Data cargada: ", this.data);
 		if (this.data) {
 			this.data.forEach((element) => {
-				console.log("elemento del foreach: ", element);
-
-				this.total =
-					this.total + element.producto.precio * element.cantidad;
-
-				console.log(this.total);
+				this.total = this.total + element.producto.precio * element.cantidad;
 			});
 		}
-		console.log("total:", this.total);
 	}
 
 	back() {
@@ -59,10 +50,7 @@ export class CarritoPage {
 				{
 					text: "Save",
 					handler: (data) => {
-						console.log("Saved clicked", data);
-
 						this.data.filter((item) => {
-							console.log(item);
 							if (item.producto.id == id) {
 								item.cantidad = data.newcant;
 							}
@@ -103,24 +91,15 @@ export class CarritoPage {
 		let totales = 0;
 		if (this.data) {
 			this.data.forEach((element) => {
-				console.log("elemento del foreach: ", element);
-
 				totales = totales + element.producto.precio * element.cantidad;
-
 				this.total = totales;
             });
         }
+
         if(this.data.length <= 0){
-            console.log('Ya no tenemos ningun producto en el carrito');
             this.total = 0;
         }
-	}
 
-	aplicarCupon() {
-		if (this.cupon == "covid-19") {
-			this.total = this.total - this.total * 0.15;
-			this.habilitado = false;
-		}
 	}
 
 	enviarPedido() {
@@ -129,5 +108,12 @@ export class CarritoPage {
 			this.total = 0;
 			this.navCtrl.push('ProductsPage');
 		});
-	}
+    }
+    
+    checkout() {
+        this.navCtrl.push('CheckoutPage',{
+            carrito: this.data,
+            total: this.total
+        })
+    }
 }

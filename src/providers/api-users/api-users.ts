@@ -56,10 +56,10 @@ export class ApiUsersProvider {
         });
     }
 
-    register(nombre: string, email: string, password: string) {
+    register(nombre: string, email: string, password: string, cuidad:string) {
         let url = URL_SERVICIOS + "/register";
 
-        return this.http.post(url, { nombre, email, password }).map((resp) => {
+        return this.http.post(url, { nombre, email, password,cuidad }).map((resp) => {
             let data_resp = resp;
             console.log(data_resp);
 

@@ -6,6 +6,15 @@ page-register {
         background-position: right;
         ion-input {
             border-bottom: 1px solid #222222;
+            color: orange;
+        }
+        
+        ion-label {
+            color: white;
+            font-weight: 600;
+        }
+        ion-list{
+            background-color: rgba(250,255,255,0) !important;
         }
     }
     ion-card {
@@ -15,4 +24,7 @@ page-register {
         width: 40% !important;
         margin: 0 auto !important;
     }
+}
+.cuidades{
+    color: orange !important;
 }

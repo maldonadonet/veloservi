@@ -4,18 +4,26 @@ page-login {
         background-repeat: no-repeat;
         background-size: cover;
         background-position: right;
+        color: white !important;
         ion-input {
-            border-bottom: 1px solid #222222;
+            border-bottom: 1px solid #fff;
+            color: orange;
+
+        }
+        ion-input::placeholder{
+            border: 1px solid gray !important;
+            background-color: gray !important;
         }
         button {
-            background: #000 !important;
-            color: #fff !important;
+            background: #fff !important;
+            color: #000 !important;
             margin-top: 10px !important;
             width: 90% !important;
         }
     }
     ion-card {
-        margin-top: 10% !important;
+        margin-top: 30% !important;
+        border-radius: 10px !important;
     }
 }
 

@@ -1,12 +1,21 @@
-<ion-header>
-	<ion-navbar color="primary">
-		<ion-buttons>
-			<button ion-button icon-only start (click)="abrirmenu()">
-				<ion-icon name="menu"></ion-icon>
-			</button>
-		</ion-buttons>
-		<ion-title>Mi cuenta</ion-title>
-	</ion-navbar>
+<ion-header style="background-color: rgb(0, 0, 0);">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-1 id="icon-menu">
+                <a (click)="abrirmenu()">
+                    <img src="assets/imgs/menu-icon.svg">
+                </a>
+            </ion-col>
+            <ion-col col-9 id="col-title">
+                <span id="title">Mi cuenta</span>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <a href="https://wa.me/525547249503" ion-button icon-only start (click)="abrirmenu()">
+                    <ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+                </a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-header>
 
 <ion-content>

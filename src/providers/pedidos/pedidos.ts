@@ -49,7 +49,7 @@ export class PedidosProvider {
 		});
 	}
 
-	crear_pedido(data:any, total){
+	crear_pedido(data:any, total, cuidad:string, calle:string, colonia:string, referencia: string, telefono:string){
 
 		// var personales
 		this.token = this._us.token;
@@ -71,9 +71,22 @@ export class PedidosProvider {
 		let cantidades = arrayCant.toString();
 		let ids = arrIds.toString();
 		let asociados = arrAsociados.toString();
-		let costos = arrCostos.toString();		
+        let costos = arrCostos.toString();	
+        
+        console.log('array_cantidades',cantidades);
+        console.log('array ids',ids);
+        console.log('total',total);
+        console.log('array asociados',asociados);
+        console.log('array costos',costos);
+        console.log('cuidad',cuidad);
+        console.log('calle',calle);
+        console.log('colonia',colonia);
+        console.log('referencia',referencia);
+        console.log('telefono',telefono);
 
-		return this.http.post(url, {cantidades,ids,total,asociados,costos}).map((resp)=>{
+        
+
+		return this.http.post(url, {cantidades,ids,total,asociados,costos,cuidad,calle,colonia,referencia,telefono}).map((resp)=>{
 
 				let data_resp = resp;
 

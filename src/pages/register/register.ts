@@ -12,12 +12,14 @@ import { ApiUsersProvider } from '../../providers/api-users/api-users';
 @IonicPage()
 @Component({
 	selector: "page-register",
-	templateUrl: "register.html"
+    templateUrl: "register.html"
 })
 export class RegisterPage {
-	nombre: string;
-	email: string;
-	password: string;
+
+	nombre: string = '';  
+	email: string = '';
+    password: string = '';
+    cuidad: string = '';
 
 	constructor(
 		public navCtrl: NavController,
@@ -39,7 +41,7 @@ export class RegisterPage {
 		loading.present();
 
 		this._us
-			.register(this.nombre, this.email, this.password)
+			.register(this.nombre, this.email, this.password, this.cuidad)
 			.subscribe(data => {
 				console.log(data);
 				loading.dismiss();

@@ -5,16 +5,17 @@
 </ion-header>
 
 <ion-content>
-    <h1>Resumen del Pedido Especial</h1>
+    <h2 text-center>Resumen del Pedido</h2>
     <ion-card>
         <ion-card-header>
             <h2 text-center>Datos del Pedido</h2>
         </ion-card-header>
         <ion-card-content>
-            <p>Pedido No.:<strong>{{ pedido.id }}</strong></p>
-            <p>Cliente: <strong>{{ pedido.usuario_id }}</strong></p>
+            <p>Pedido No: <strong>{{ pedido.id }}</strong></p>
+            <p>Cliente: <strong>{{ pedido.name }}</strong></p>
             <p>Sucursal: <strong>{{ pedido.nombre_sucursal }}</strong></p>
-            <p>Pedido: <strong>{{ pedido.productos }}</strong></p>
+            <p>Dirección Sucursal: <strong>{{ pedido.direccion_sucursal }}</strong></p>
+            <p>Productos solicitados: <strong>{{ pedido.productos }}</strong></p>
             <p>Importe del Pedido: <strong>{{ pedido.total }}</strong></p>
         </ion-card-content>
     </ion-card>
@@ -27,6 +28,14 @@
         </ion-card-header>
         <ion-card-content>
             <p>Dirección de entrega:<strong>{{ pedido.dir_entrega }}</strong></p>
+            <ion-list>
+                <ion-item>
+                    <ion-label>
+                        Estatus del pedido: <br><strong>{{ pedido.estatus }}</strong><br>
+                        Ultima actualización: <br><strong>{{ pedido.updated_at }}</strong>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
         </ion-card-content>
     </ion-card>
 </ion-content>

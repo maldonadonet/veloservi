@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>checkout</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h2 text-center>Pedido solicitado</h2>
+
+    <ion-grid *ngIf="carrito">
+        <ion-row id="row-header">
+            <ion-col col-3>
+                <strong>Producto</strong>
+            </ion-col>
+            <ion-col col-3>
+                <strong>Precio</strong>
+            </ion-col>
+            <ion-col col-3>
+                <strong>Cantidad</strong>
+            </ion-col>
+            <ion-col col-3>
+                <strong>Total</strong>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let item of carrito" id="row-result">
+            <ion-col col-3 text-center>
+                <span>{{ item.producto.nombre }}</span>
+            </ion-col>
+            <ion-col col-3 text-center>
+                <span>$ {{ item.producto.precio }}</span>
+            </ion-col>
+            <ion-col col-3 text-center>
+                <span>{{ item.cantidad }}</span>
+            </ion-col>
+            <ion-col col-3 text-right>
+                <span>$ {{ (item.producto.precio * item.cantidad).toFixed(2) }}</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <hr>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 text-center>
+                <h3>Datos del envío</h3>
+                <ion-list>
+                    <ion-item>
+                        <ion-label float>Cuidad</ion-label>
+                        <ion-select [(ngModel)]="cuidad">
+                            <ion-option value="Neiva">Neiva</ion-option>
+                            <ion-option value="Garzon">Garzon</ion-option>
+                            <ion-option value="Pitalito">Pitalito</ion-option>
+                            <ion-option value="La plata">La plata</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label float>Calle</ion-label>
+                        <ion-input type="text" placeholder="Calle y Número" [(ngModel)]="calle"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label float>Colonia</ion-label>
+                        <ion-input type="text" placeholder="Colonia" [(ngModel)]="colonia"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label float>Telefono de contacto (WhatsApp)</ion-label>
+                        <ion-input type="number" placeholder="Teléfono de contacto" [(ngModel)]="telefono"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label float>Referencias adicional para ubicar dirección</ion-label>
+                        <ion-textarea [(ngModel)]="referencia"></ion-textarea>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12">
+                <p text-justify>
+                    Una vez enviado tu pedido entra en proceso de revisión y existencia de los productos, en tu módulo de pedidos podrás ver el estus de tu Pedido.
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <button ion-button (click)="enviar_pedido()" [disabled]="cuidad.length <= 3 || calle.length <= 3 || colonia.length <= 5 || telefono.length <= 5 ">Enviar Pedido</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12">
+                <img src="assets/imgs/confirmation.svg" alt="">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

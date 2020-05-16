@@ -11,17 +11,12 @@ import { PedidosProvider } from "./../../providers/pedidos/pedidos";
 export class Tab1Page {
   pedidos: any[] = [];
   
-	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		private _ps: PedidosProvider
-	) {}
+	constructor( public navCtrl: NavController, public navParams: NavParams, private _ps: PedidosProvider ) {}
 
 	ionViewDidLoad() {
-		console.log("ionViewDidLoad Tab1Page");
 		this._ps.obtener_pedidos().subscribe((data: any) => {
 			this.pedidos = data.pedidos;
-			console.log(this.pedidos);
+			console.log('Pedidos=>',this.pedidos);
 		});
   }
   

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <h1 text-center>Detalle del pedido</h1>
+    <h1 text-center>Datos del pedido</h1>
 
     <ion-card mode="ios">
         <ion-card-header>
@@ -13,10 +13,31 @@
         </ion-card-header>
         <ion-card-content>
             <p><strong>Cliente:</strong> {{ items.nombre }}</p>
-            <p><strong>Dirección de entrega:</strong> {{ items.direccion_entrega }}</p>
+            <p><strong>Teléfono:</strong> {{ items.telefono }}</p>
+            <hr>
+            <span>Dirección</span>
+            <p><strong>Cuidad:</strong> {{ items.cuidad }}</p>
+            <p><strong>Colonia:</strong> {{ items.colonia }}</p>
+            <p><strong>Calle:</strong> {{ items.calle }}</p>
+            <p><strong>Referencias:</strong> {{ items.referencia }}</p>
+            <hr>
             <p><strong>Fecha de pedido:</strong> {{ items.fecha_pedido }}</p>
-            <p><strong>Estatus del pedido:</strong> {{ items.estatus }}</p>
             <p><strong>Pedido No:</strong> {{ items.id_pedido }}</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>Estado del Pedido</ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    
+                    <ion-label>
+                        <strong>{{ items.estatus }}</strong>
+                        <p>Ultima actualizacion el: {{ items.actualizado }}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
         </ion-card-content>
     </ion-card>
 
@@ -44,7 +65,7 @@
                 </ion-item>
                 <ion-row>
                     <ion-col col-12 text-right>
-                        <p><strong id="total">Total del pedido: $ {{ (items.monto) }}</strong></p>
+                        <p><strong id="total" style="color:black !important;">Total del pedido: $ {{ (items.monto) }}</strong></p>
                     </ion-col>
                 </ion-row>
             </ion-list>   
