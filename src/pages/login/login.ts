@@ -21,7 +21,7 @@ export class LoginPage {
     }
 
     cancelar(){
-      this.navCtrl.pop();
+        this.navCtrl.setRoot('WelcomePage');
     }
 
     ingresar(){

@@ -45,7 +45,7 @@ export class RegisterPage {
 			.subscribe(data => {
 				console.log(data);
 				loading.dismiss();
-				this.navCtrl.pop();
+                this.navCtrl.setRoot('LoginPage');
 			});
 	}
 

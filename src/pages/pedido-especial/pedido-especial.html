@@ -1,12 +1,16 @@
 <ion-header no-border>
-	<h1>Pedido Especial</h1>
-	<div text-center>
-		<img src="assets/imgs/iconos/icon-pedido.svg" alt="" width="20%">
+	<div text-center padding>
+		<img src="assets/imgs/icon-comercio.svg" alt="" width="30%">
 	</div>
 </ion-header>
 
 <ion-content padding>
 
+    <ion-row>
+        <ion-col col-12>
+            <h3></h3>
+        </ion-col>
+    </ion-row>
 	<ion-card>
 		<ion-card-header>
 			<ion-card-title text-center>
@@ -16,7 +20,9 @@
 		<ion-card-content>
 			<ion-list no-border>
 				<ion-item>
-					<p>Proporciona los datos para enviar tu pedido.</p>
+					<p>
+                        Favor de proporcionar todos los datos para que nuestros repartidores, puedan consultar la información de pedido y procesarla hasta la puerta de tu casa.
+                    </p>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked color="primary">Nombre de sucursal:</ion-label>
@@ -46,7 +52,7 @@
 							<button ion-button round full [navPush]="pushPage">Cancelar</button>
 						</ion-col>
 						<ion-col col-6>
-							<button ion-button round block (click)="pedido_esp()">Enviar</button>
+							<button ion-button round block (click)="pedido_esp()" [disabled]="nombre_sucursal.length <= 5 || dir_sucursal.length <= 5 || productos.length <= 5 || dir_entrega.length <= 5">Enviar</button>
 						</ion-col>
 					</ion-row>
 				</ion-item>

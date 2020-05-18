@@ -13,6 +13,7 @@ page-products {
             width: 100% !important;
             img{
                 width: 100% !important;
+                height: 180px !important;
                 
             }
         }
@@ -43,7 +44,8 @@ page-products {
 }
 
 #label-pedido-esp {
-    color: #c70039;
+    font-size: 1.3em;
+    color: black;
     font-weight: 700;
     text-transform: uppercase;
 }

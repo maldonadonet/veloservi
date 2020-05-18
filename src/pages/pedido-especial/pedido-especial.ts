@@ -16,7 +16,8 @@ export class PedidoEspecialPage {
 	nombre_sucursal: string = "";
 	dir_sucursal: string = "";
 	productos: string = "";
-	dir_entrega: string = "";
+    dir_entrega: string = "";
+    
 	pushPage: any;
 	habilitado: boolean = false;
 

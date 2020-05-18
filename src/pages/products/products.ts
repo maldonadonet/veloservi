@@ -28,7 +28,6 @@ export class ProductsPage {
 
     constructor( public navCtrl: NavController, public _us: ApiUsersProvider, public _ps: ApiProductsProvider, public loadingCtrl: LoadingController,public alertCtrl:AlertController, private menuCtrl: MenuController, public navParams: NavParams, private platform: Platform, private storage: Storage, private toastCtrl: ToastController) {
         if (navParams.get('data') == 'vaciar') {
-            console.log('vaciar el carrito');
             this.carrito = [];
         }
         
@@ -86,15 +85,12 @@ export class ProductsPage {
         });
 
         alert.addButton("Cancel");
-        alert.addButton({
-            text: "Filtrar",
-            handler: (data) => {
-                console.log(data);
+        alert.addButton( { text: "Filtrar", handler: (data) => {
                 if (data == undefined) {
                     return;
                 } else {
+                    this.promocion = false;
                     this._ps.filtrarCategoria(data).subscribe((data: any) => {
-                        console.log("Categoria: ", data.data.data);
                         this.productos = data.data.data;
                     });
                 }
@@ -109,7 +105,7 @@ export class ProductsPage {
 
     filtrarAsociado() {
         let alert = this.alertCtrl.create();
-        alert.setTitle("Filtrar por Asociado");
+        alert.setTitle("Sucursales");
 
         let item: any = [];
 
@@ -117,15 +113,15 @@ export class ProductsPage {
             this._ps.asociados.forEach((element) => {
                 alert.addInput({
                     type: "radio",
-                    label: element.nombre,
+                    label: element.name,
                     value: element.id,
                     checked: false,
                 });
             });
 
-            alert.addButton("Cancel");
+            alert.addButton("Cancelar");
             alert.addButton({
-                text: "Filtrar",
+                text: "Aplicar filtro",
                 handler: (data) => {
                     console.log(data);
                     if (data == undefined) {

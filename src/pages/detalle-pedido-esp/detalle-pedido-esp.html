@@ -22,12 +22,12 @@
 
     <hr>
 
-    <ion-card>
+    <ion-card style="border: 2px solid orange; box-shadow: -2px -2px 6px gray;">
         <ion-card-header>
             <h2 text-center>Datos del envío</h2>
         </ion-card-header>
         <ion-card-content>
-            <p>Dirección de entrega:<strong>{{ pedido.dir_entrega }}</strong></p>
+            <p>Dirección de entrega:<strong> {{ pedido.dir_entrega }}</strong></p>
             <ion-list>
                 <ion-item>
                     <ion-label>
@@ -42,9 +42,10 @@
 
 
 <ion-footer>
-    <ion-toolbar>
-        <ion-title text-center>
-            <button ion-button navPush="PedidosPage">Regresar al listado de Pedidos</button>
-        </ion-title>
-    </ion-toolbar>
+    <ion-col col-12>
+        <button ion-button full navPush="PedidosPage">
+            <img src="assets/imgs/list.svg" width="10%">
+            Regresar al listado de Pedidos
+        </button>
+    </ion-col>
 </ion-footer>

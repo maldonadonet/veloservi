@@ -101,14 +101,6 @@ export class CarritoPage {
         }
 
 	}
-
-	enviarPedido() {
-		this._ps.crear_pedido( this.data, this.total).subscribe(()=>{
-			this.data = [];
-			this.total = 0;
-			this.navCtrl.push('ProductsPage');
-		});
-    }
     
     checkout() {
         this.navCtrl.push('CheckoutPage',{

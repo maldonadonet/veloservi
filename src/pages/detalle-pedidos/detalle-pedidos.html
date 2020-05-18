@@ -5,11 +5,17 @@
 </ion-header>
 
 <ion-content>
-    <h1 text-center>Datos del pedido</h1>
+    <ion-row>
+        <ion-col col-12 text-center>
+            <h1 text-center>Datos del pedido</h1>
+        </ion-col>
+    </ion-row>
+    
+    
 
     <ion-card mode="ios">
         <ion-card-header>
-            <strong text-center>Datos del Pedido</strong>
+            <strong text-center>Datos del cliente</strong>
         </ion-card-header>
         <ion-card-content>
             <p><strong>Cliente:</strong> {{ items.nombre }}</p>
@@ -26,12 +32,11 @@
         </ion-card-content>
     </ion-card>
 
-    <ion-card>
-        <ion-card-header>Estado del Pedido</ion-card-header>
+    <ion-card id="card-estatus">
+        <ion-card-header text-center>Estado del Pedido</ion-card-header>
         <ion-card-content>
             <ion-list>
                 <ion-item>
-                    
                     <ion-label>
                         <strong>{{ items.estatus }}</strong>
                         <p>Ultima actualizacion el: {{ items.actualizado }}</p>
@@ -75,9 +80,10 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-        <ion-title text-center>
-            <button ion-button navPush="PedidosPage">Regresar al listado de Pedidos</button>
-        </ion-title>
-    </ion-toolbar>
+    <ion-col col-12>
+        <button ion-button full navPush="PedidosPage">
+            <img src="assets/imgs/list.svg" width="10%">
+            Regresar al listado de Pedidos
+        </button>
+    </ion-col>
 </ion-footer>
